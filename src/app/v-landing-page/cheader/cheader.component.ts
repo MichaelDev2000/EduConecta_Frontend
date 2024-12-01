@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './cheader.component.css'
 })
 export class CheaderComponent {
+  menuOpen = false;
 
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 }
