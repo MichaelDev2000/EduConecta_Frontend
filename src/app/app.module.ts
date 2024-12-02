@@ -11,6 +11,8 @@ import { CSectionPorqueComponent } from './v-landing-page/c-section-porque/c-sec
 import { CSectionSomosComponent } from './v-landing-page/c-section-somos/c-section-somos.component';
 import { VLandingPageComponent } from './v-landing-page/v-landing-page.component';
 import { CSectionMainComponent } from './v-landing-page/c-section-main/c-section-main.component';
+import { VFormulariosComponent } from './v-formularios/v-formularios.component';
+import { CheaderFormComponent } from './v-formularios/cheader-form/cheader-form.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { CSectionMainComponent } from './v-landing-page/c-section-main/c-section
     CSectionPorqueComponent,
     CSectionSomosComponent,
     CSectionMainComponent,
+    VFormulariosComponent,
+    CheaderFormComponent,
 
 
   ],
