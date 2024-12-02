@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CheaderComponent } from './v-landing-page/cheader/cheader.component';
@@ -15,6 +16,13 @@ import { VFormulariosComponent } from './v-formularios/v-formularios.component';
 import { CheaderFormComponent } from './v-formularios/cheader-form/cheader-form.component';
 import { FormAuthComponent } from './v-formularios/form-auth/form-auth.component';
 import { VEduconectaComponent } from './v-educonecta/v-educonecta.component';
+import { CvistamainComponent } from './v-educonecta/cvistamain/cvistamain.component';
+import { FeedComponent } from './v-educonecta/cvistamain/feed/feed.component';
+import { GruposComponent } from './v-educonecta/cvistamain/grupos/grupos.component';
+import { AmistadesComponent } from './v-educonecta/cvistamain/amistades/amistades.component';
+import { CheadermainComponent } from './v-educonecta/cheadermain/cheadermain.component';
+import { CSectionHacemosComponent } from './v-landing-page/c-section-hacemos/c-section-hacemos.component';
+
 
 
 @NgModule({
@@ -32,6 +40,13 @@ import { VEduconectaComponent } from './v-educonecta/v-educonecta.component';
     VLandingPageComponent,
     FormAuthComponent,
     VEduconectaComponent,
+    CvistamainComponent,
+    FeedComponent,
+    GruposComponent,
+    AmistadesComponent,
+    CheadermainComponent,
+    CSectionHacemosComponent,
+
 
 
   ],
