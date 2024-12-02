@@ -29,7 +29,7 @@
         <!-- Formulario de Login -->
         <form
           id="login" class="input-group" [class.active]="activeForm === 'login'">
-          <label for="login-username">Usuario o Nombre</label>
+          <label for="login-username">Correo electronico </label>
           <input id="login-username" type="text" class="input-field" placeholder="Ingresa tu usuario o nombre" required />
           <label for="login-password">Contraseña</label>
           <input
@@ -57,7 +57,15 @@
           class="input-group"
           [class.active]="activeForm === 'register'"
         >
-          <label for="register-name">Nombre Completo</label>
+          <label for="register-name">Nombres </label>
+          <input
+            id="register-name"
+            type="text"
+            class="input-field"
+            placeholder="Ingresa tu nombre completo"
+            required
+          />
+          <label for="register-name">Apellidos</label>
           <input
             id="register-name"
             type="text"
@@ -81,12 +89,22 @@
             placeholder="Ingresa tu contraseña"
             required
           />
+          <!--
           <label for="register-confirm-password">Confirmar Contraseña</label>
           <input
             id="register-confirm-password"
             type="password"
             class="input-field"
             placeholder="Confirma tu contraseña"
+            required
+          />
+          -->
+          <label for="biografia">Biografia</label>
+          <input
+            id="biografia"
+            type="text"
+            class="input-field"
+            placeholder="escriba su biografia"
             required
           />
           <button type="button" class="submit-btn">Registrarse</button>

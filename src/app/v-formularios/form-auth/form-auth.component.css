@@ -37,6 +37,7 @@
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       overflow: hidden;
+      margin-top: 45px;
     }
     
     .welcome-box {
@@ -116,7 +117,7 @@
       font-size: 14px;
       font-weight: bold;
       color: #555;
-      margin-bottom: 5px;
+      
       display: inline-block;
     }
     
