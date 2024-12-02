@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrl: './form-auth.component.css'
 })
 export class FormAuthComponent {
+  activeForm: string = 'login'; // Determina el formulario activo
 
+  showLoginForm() {
+    this.activeForm = 'login';
+  }
+
+  showRegisterForm() {
+    this.activeForm = 'register';
+  }
+
+  showForgotPasswordForm() {
+    this.activeForm = 'forgotPassword';
+  }
 }
