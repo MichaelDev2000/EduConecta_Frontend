@@ -5,9 +5,10 @@ import { VFormulariosComponent } from './v-formularios/v-formularios.component';
 import { VEduconectaComponent } from './v-educonecta/v-educonecta.component';
 
 const routes: Routes = [
-{ path: '', component: VLandingPageComponent }, // Página principal (landing page)
-{ path: 'login', component: VFormulariosComponent },
-{ path: 'main', component: VEduconectaComponent },
+  { path: '', component: VLandingPageComponent }, // Página principal (landing page)
+  { path: 'login', component: VFormulariosComponent },
+  { path: 'main', component: VEduconectaComponent },
+  { path: 'educonecta', component: VEduconectaComponent }
 ]
 
 @NgModule({
