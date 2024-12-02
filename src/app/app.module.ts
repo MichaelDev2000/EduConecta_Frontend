@@ -13,6 +13,8 @@ import { VLandingPageComponent } from './v-landing-page/v-landing-page.component
 import { CSectionMainComponent } from './v-landing-page/c-section-main/c-section-main.component';
 import { VFormulariosComponent } from './v-formularios/v-formularios.component';
 import { CheaderFormComponent } from './v-formularios/cheader-form/cheader-form.component';
+import { FormAuthComponent } from './v-formularios/form-auth/form-auth.component';
+import { VEduconectaComponent } from './v-educonecta/v-educonecta.component';
 
 
 @NgModule({
@@ -27,6 +29,9 @@ import { CheaderFormComponent } from './v-formularios/cheader-form/cheader-form.
     CSectionMainComponent,
     VFormulariosComponent,
     CheaderFormComponent,
+    VLandingPageComponent,
+    FormAuthComponent,
+    VEduconectaComponent,
 
 
   ],
