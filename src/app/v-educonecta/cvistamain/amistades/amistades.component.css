@@ -1,0 +1,23 @@
+.publicacion {
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .publicacion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  .text-green-500 {
+    color: #16a34a;
+  }
+  
+  .text-gray-500 {
+    color: #6b7280;
+  }
+  

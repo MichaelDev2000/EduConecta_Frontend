@@ -1,0 +1,48 @@
+.grupos {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-left: 1rem;
+  }
+  
+  .grupos .publicacion {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .grupos .publicacion img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #d1d5db;
+  }
+  
+  .grupos .publicacion p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #374151;
+  }
+  
+  .grupos .publicacion button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .grupos .publicacion button:hover {
+    background-color: #2563eb;
+  }
+  

@@ -1,6 +1,7 @@
+<!--
 <section class="flex-1 rounded-lg border border-blue-gray-50 font-sans p-4 mr-2 ml-2 text-center">
     <div><!--agregar aqui un *ngfor-->
-        <div class="publicacion">
+ <!--       <div class="publicacion">
             <div
                 class=" rounded-lg border border-blue-gray-50 bg-blancofull mt-4 mx-4 p-4 font-sans text-sm font-normal text-blue-gray-500">
                 <div class="flex items-center gap-4 mb-2">
@@ -27,3 +28,49 @@
         </div>
     </div>
 </section>
+-->
+<section class="flex-1 rounded-lg border border-gray-200 bg-white shadow-md p-4 mx-2 w-full">
+    <h2 class="text-lg font-bold text-gray-700 mb-4">Publicaciones</h2>
+  
+    <!-- Formulario para nueva publicación -->
+    <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 mb-6">
+      <textarea
+        [(ngModel)]="nuevaPublicacion"
+        placeholder="¿Qué quieres compartir?"
+        class="w-full p-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        rows="3"
+      ></textarea>
+      <button
+        (click)="crearPublicacion()"
+        class="mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition"
+      >
+        Publicar
+      </button>
+    </div>
+  
+    <!-- Lista de publicaciones -->
+    <div *ngFor="let publicacion of publicaciones" class="rounded-lg border border-gray-200 bg-gray-50 p-4 mb-4">
+      <div class="flex items-center gap-4 mb-3">
+        <img
+          [src]="publicacion.usuarioImagen"
+          alt="Usuario"
+          class="w-12 h-12 object-cover rounded-full"
+        />
+        <div>
+          <h3 class="text-sm font-semibold text-gray-800">{{ publicacion.usuario }}</h3>
+          <p class="text-xs text-gray-600">{{ publicacion.fecha | date: 'short' }}</p>
+        </div>
+      </div>
+      <p class="text-sm text-gray-700 mb-3">{{ publicacion.contenido }}</p>
+      <div class="flex items-center gap-4">
+        <button class="flex items-center gap-2 text-blue-500 hover:text-blue-600">
+          <img src="like.png" alt="Like" class="w-4 h-4"> Me gusta
+        </button>
+        <button class="flex items-center gap-2 text-blue-500 hover:text-blue-600">
+          <img src="comment.png" alt="Comment" class="w-4 h-4"> Comentar
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  
