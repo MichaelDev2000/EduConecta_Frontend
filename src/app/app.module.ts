@@ -22,6 +22,7 @@ import { GruposComponent } from './v-educonecta/cvistamain/grupos/grupos.compone
 import { AmistadesComponent } from './v-educonecta/cvistamain/amistades/amistades.component';
 import { CheadermainComponent } from './v-educonecta/cheadermain/cheadermain.component';
 import { CSectionHacemosComponent } from './v-landing-page/c-section-hacemos/c-section-hacemos.component';
+import { VPerfilComponent } from './v-perfil/v-perfil.component';
 
 
 
@@ -46,6 +47,7 @@ import { CSectionHacemosComponent } from './v-landing-page/c-section-hacemos/c-s
     AmistadesComponent,
     CheadermainComponent,
     CSectionHacemosComponent,
+    VPerfilComponent,
 
 
 
