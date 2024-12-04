@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
-
+import { FormsModule } from '@angular/forms';// este lo agrego yo yiyo para que funcione la opcion de publicar publicaicon//
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CheaderComponent } from './v-landing-page/cheader/cheader.component';
@@ -47,13 +47,18 @@ import { VPerfilComponent } from './v-perfil/v-perfil.component';
     AmistadesComponent,
     CheadermainComponent,
     CSectionHacemosComponent,
+<<<<<<< HEAD
     VPerfilComponent,
+=======
+    
+>>>>>>> 968776e274d58d16aeada593b37a6405a43117c1
 
 
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [
