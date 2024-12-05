@@ -47,11 +47,8 @@ import { VPerfilComponent } from './v-perfil/v-perfil.component';
     AmistadesComponent,
     CheadermainComponent,
     CSectionHacemosComponent,
-<<<<<<< HEAD
     VPerfilComponent,
-=======
     
->>>>>>> 968776e274d58d16aeada593b37a6405a43117c1
 
 
 

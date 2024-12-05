@@ -3,27 +3,25 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-amistades',
   templateUrl: './amistades.component.html',
-  styleUrl: './amistades.component.css'
+  styleUrls: ['./amistades.component.css'],
 })
 export class AmistadesComponent {
+  // Lista de amigos
   amigos = [
     {
       nombre: 'Juan Pérez',
-      foto: 'https://via.placeholder.com/150',
+      foto: 'https://randomuser.me/api/portraits/men/1.jpg',
       enLinea: true,
-      bio: 'Amante de la tecnología y los videojuegos. 📱🎮'
+      bio: '¡Siempre dispuesto a ayudar!',
     },
-    {
-      nombre: 'María López',
-      foto: 'https://via.placeholder.com/150',
-      enLinea: false,
-      bio: 'Me encanta leer y escribir poesía. 📚🖋️'
-    },
-    {
-      nombre: 'Carlos García',
-      foto: 'https://via.placeholder.com/150',
-      enLinea: true,
-      bio: 'Aficionado al fútbol y los deportes. ⚽🏀'
-    },
+    
+    // Puedes agregar más amigos aquí
   ];
+
+  // Función para abrir el chat con un amigo
+  abrirChat(amigo: any) {
+    console.log('Abriendo chat con:', amigo.nombre);
+    // Aquí puedes redirigir a otra página de chat o abrir un modal de chat
+    // Por ejemplo: this.router.navigate(['/chat', amigo.id]);
+  }
 }

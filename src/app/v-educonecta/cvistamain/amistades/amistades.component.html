@@ -1,63 +1,32 @@
-<!--<section class=" rounded-lg border border-blue-gray-50 font-sans py-4 pr-8 mr-2 ml-2 text-center w-[50%]">
-    <p class="font-bold text-lg">Amistades</p>
-    <div><!--agregar aqui un *ngfor-->
-  <!--      <div class="publicacion grid justify-items-center">
-            <div class="truncate w-[80%] rounded-lg border border-blue-gray-50 bg-blancofull mt-2 mx-4 p-4 font-sans text-sm font-normal text-blue-gray-500 ">
-                <div class=" gap-4 mb-2">
-                    <img src="#"
-                        alt="imagen amigo"
-                        class="relative inline-block object-cover object-center w-12 h-12 rounded-full" />
-                        <p class="pl-2 text-gray-700 inline-block ">
-                           cualquier  pendejada aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                        </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="publicacion grid justify-items-center">
-            <div class="truncate w-[80%] rounded-lg border border-blue-gray-50 bg-blancofull mt-2 mx-4 p-4 font-sans text-sm font-normal text-blue-gray-500 ">
-                <div class=" gap-4 mb-2">
-                    <img src="#"
-                        alt="imagen amigo"
-                        class="relative inline-block object-cover object-center w-12 h-12 rounded-full" />
-                        <p class="pl-2 text-gray-700 inline-block truncate">
-                            cualquier pendejada 
-                        </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
--->
 <section class="rounded-lg border border-blue-gray-50 font-sans py-4 px-6 mx-4 text-center bg-white shadow-md">
-    <p class="font-bold text-lg mb-4">Amistades</p>
-  
-    <div *ngFor="let amigo of amigos" class="publicacion flex items-center justify-between mb-4 p-3 bg-gray-50 rounded-lg shadow-sm">
-      <!-- Foto del Amigo -->
-      <div class="flex items-center gap-3">
-        <img 
-          [src]="amigo.foto" 
-          alt="Imagen de {{ amigo.nombre }}" 
-          class="object-cover object-center w-12 h-12 rounded-full border border-gray-300">
-        
-        <!-- Información del Amigo -->
-        <div class="text-left">
-          <p class="font-bold text-gray-700">{{ amigo.nombre }}</p>
-          <p class="text-sm font-medium" [class.text-green-500]="amigo.enLinea" [class.text-gray-500]="!amigo.enLinea">
-            {{ amigo.enLinea ? 'En línea' : 'Desconectado' }}
-          </p>
-          <p class="text-sm text-gray-600 italic">
-            "{{ amigo.bio }}"
-          </p>
-        </div>
+  <p class="font-bold text-lg mb-4 text-center">AMISTADES</p>
+
+  <!-- Lista de amigos -->
+  <div *ngFor="let amigo of amigos" class="publicacion flex items-center justify-between mb-4 p-3 bg-gray-50 rounded-lg shadow-sm">
+    <!-- Foto del Amigo -->
+    <div class="flex items-center gap-3">
+      <img 
+        [src]="amigo.foto" 
+        alt="Imagen de {{ amigo.nombre }}" 
+        class="object-cover object-center w-12 h-12 rounded-full border border-gray-300">
+      
+      <!-- Información del Amigo -->
+      <div class="text-left">
+        <p class="font-bold text-gray-700">{{ amigo.nombre }}</p>
+        <p class="text-sm font-medium" [class.text-green-500]="amigo.enLinea" [class.text-gray-500]="!amigo.enLinea">
+          {{ amigo.enLinea ? 'En línea' : 'Desconectado' }}
+        </p>
+        <p class="text-sm text-gray-600 italic">
+          "{{ amigo.bio }}"
+        </p>
       </div>
-  
-      <!-- Botón de Eliminar -->
-      <button
-        class="rounded-lg bg-rojo-claro py-1 px-3 font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:bg-red-600">
-        Eliminar Amigo
-      </button>
     </div>
-  </section>
-  
+
+    <!-- Botón de Chat -->
+    <button
+      (click)="abrirChat(amigo)" 
+      class="rounded-lg bg-blue-500 py-1 px-3 font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:bg-blue-600">
+      Chat
+    </button>
+  </div>
+</section>
