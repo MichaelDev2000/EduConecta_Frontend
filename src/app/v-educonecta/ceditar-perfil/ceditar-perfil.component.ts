@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class CeditarPerfilComponent {
 
+  perfil = [
+    {
+      nombre: 'Pepito Pérez',
+      foto: 'https://randomuser.me/api/portraits/men/1.jpg',
+      rol: 'estudante',
+      biografia:`Ubicación:Bogotá,Colombia \n\ncorreo:pepitoperez604@gmail.com \nhola buenas tardes`,
+    }
+    
+  ];
 }

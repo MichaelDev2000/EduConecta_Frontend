@@ -9,6 +9,8 @@ const routes: Routes = [
   { path: 'login', component: VFormulariosComponent },
   { path: 'main', component: VEduconectaComponent },
   { path: 'educonecta', component: VEduconectaComponent }
+  
+
 ]
 
 @NgModule({

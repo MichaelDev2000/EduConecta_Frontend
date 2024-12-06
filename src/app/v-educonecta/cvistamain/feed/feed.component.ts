@@ -1,85 +1,95 @@
 import { Component } from '@angular/core';
 
-// Define interfaces para la estructura de la publicación y los comentarios
-interface Comentario {
-  usuario: string;
-  texto: string;
-}
-
-interface Publicacion {
-  usuario: string;
-  usuarioImagen: string;
-  fecha: Date;
-  contenido: string;
-  comentarios: Comentario[];
-  mostrarFormularioComentario: boolean; // Controla la visibilidad del formulario de comentarios
-  nuevoComentario: string; // Almacena el nuevo comentario para la publicación específica
-}
-
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent {
-  // Lista de publicaciones con el tipo correcto
-  publicaciones: Publicacion[] = [
+  publicaciones = [
     {
       usuario: 'Juan Pérez',
       usuarioImagen: 'https://randomuser.me/api/portraits/men/1.jpg',
       fecha: new Date(),
       contenido: 'Este es un ejemplo de una publicación interesante.',
+      tema: 'Matemáticas',
+      likes: 5,
+      haDadoLike: false,
       comentarios: [],
-      mostrarFormularioComentario: false, // Inicialmente no mostrar el formulario
-      nuevoComentario: '', // Campo de comentario vacío inicialmente
+      mostrarComentarios: false,
+      nuevoComentario: '',
     },
-    
+    {
+      usuario: 'María López',
+      usuarioImagen: 'https://randomuser.me/api/portraits/women/1.jpg',
+      fecha: new Date(),
+      contenido: 'Me encanta compartir cosas aquí con todos ustedes.',
+      tema: 'Ciencias',
+      likes: 3,
+      haDadoLike: false,
+      comentarios: [{ usuario: 'Ana', texto: '¡Qué interesante!' }],
+      mostrarComentarios: false,
+      nuevoComentario: '',
+    },
   ];
 
-  // Modelo para la nueva publicación
   nuevaPublicacion: string = '';
+  temaSeleccionado: string = '';
+  filtroTema: string = '';
+  temas: string[] = ['Matemáticas', 'Ciencias', 'Sociales', 'Tecnología'];
+  publicacionesFiltradas = [...this.publicaciones];
 
-  // Función para crear una nueva publicación
   crearPublicacion() {
-    if (this.nuevaPublicacion.trim() === '') {
-      alert('Por favor, escribe algo antes de publicar.');
+    if (this.nuevaPublicacion.trim() === '' || this.temaSeleccionado === '') {
+      alert('Por favor, escribe algo y selecciona un tema antes de publicar.');
       return;
     }
 
-    const nueva: Publicacion = {
-      usuario: 'Tú', // Puedes adaptarlo según la lógica de tu aplicación
-      usuarioImagen: 'https://randomuser.me/api/portraits/lego/1.jpg', // Imagen genérica
+    const nueva = {
+      usuario: 'Tú',
+      usuarioImagen: 'https://randomuser.me/api/portraits/lego/1.jpg',
       fecha: new Date(),
       contenido: this.nuevaPublicacion,
+      tema: this.temaSeleccionado,
+      likes: 0,
+      haDadoLike: false,
       comentarios: [],
-      mostrarFormularioComentario: false,
+      mostrarComentarios: false,
       nuevoComentario: '',
     };
 
-    this.publicaciones.unshift(nueva); // Añade la publicación al inicio del array
-    this.nuevaPublicacion = ''; // Limpia el campo de texto
+    this.publicaciones.unshift(nueva);
+    this.filtrarPublicaciones();
+    this.nuevaPublicacion = '';
+    this.temaSeleccionado = '';
   }
 
-  // Función para agregar un comentario a una publicación
-  agregarComentario(publicacion: Publicacion) {
-    if (publicacion.nuevoComentario.trim() === '') {
-      alert('Por favor, escribe un comentario.');
-      return;
+  filtrarPublicaciones() {
+    this.publicacionesFiltradas = this.filtroTema
+      ? this.publicaciones.filter((p) => p.tema === this.filtroTema)
+      : [...this.publicaciones];
+  }
+
+  darMeGusta(publicacion: any) {
+    if (publicacion.haDadoLike) {
+      publicacion.likes--;
+    } else {
+      publicacion.likes++;
     }
-
-    // Agregar comentario a la publicación específica
-    publicacion.comentarios.push({
-      usuario: 'Tú', // Usuario que comenta
-      texto: publicacion.nuevoComentario, // Texto del comentario
-    });
-
-    // Limpiar el campo de comentario
-    publicacion.nuevoComentario = ''; // Limpiar el campo de comentario después de agregarlo
-    publicacion.mostrarFormularioComentario = false; // Ocultar el formulario de comentarios después de enviar
+    publicacion.haDadoLike = !publicacion.haDadoLike;
   }
 
-  // Función para mostrar el formulario de comentario
-  showCommentInput(publicacion: Publicacion) {
-    publicacion.mostrarFormularioComentario = !publicacion.mostrarFormularioComentario; // Alternar la visibilidad del formulario
+  mostrarComentarios(publicacion: any) {
+    publicacion.mostrarComentarios = !publicacion.mostrarComentarios;
+  }
+
+  agregarComentario(publicacion: any) {
+    if (publicacion.nuevoComentario.trim() !== '') {
+      publicacion.comentarios.push({
+        usuario: 'Tú',
+        texto: publicacion.nuevoComentario,
+      });
+      publicacion.nuevoComentario = '';
+    }
   }
 }
