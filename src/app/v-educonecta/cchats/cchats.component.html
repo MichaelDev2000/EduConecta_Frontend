@@ -1,1 +1,89 @@
-<p>cchats works!</p>
+<div class="flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <div class="w-1/4 bg-gray-100 border-r border-gray-300">
+      <!-- Sidebar Header -->
+      <header class="p-4 border-b border-gray-300 flex justify-between items-center bg-blue-500 text-white">
+        <h1 class="text-lg font-semibold">Chat EduConecta</h1>
+      </header>
+  
+      <!-- Contact List -->
+      <div class="overflow-y-auto h-screen p-3 pb-24">
+        <!-- Contact Item -->
+        <div 
+          *ngFor="let amigo of amigos" 
+          (click)="seleccionarAmigo(amigo)" 
+          class="flex items-center mb-4 cursor-pointer hover:bg-gray-200 p-2 rounded-md gap-4"
+          [class.bg-blue-100]="amigoSeleccionado === amigo"
+        >
+          <img 
+            [src]="amigo.foto" 
+            alt="Imagen de {{ amigo.nombre }}" 
+            class="object-cover object-center w-12 h-12 rounded-full border border-gray-300"
+          />
+          
+          <div class="text-left flex-1">
+            <p class="font-bold text-gray-700">{{ amigo.nombre }}</p>
+            <p class="text-sm font-medium" 
+               [class.text-green-500]="amigo.enLinea" 
+               [class.text-gray-500]="!amigo.enLinea">
+              {{ amigo.enLinea ? 'En línea' : 'Desconectado' }}
+            </p>
+            <p class="text-sm text-gray-600 italic">
+              "{{ amigo.bio }}"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Main Chat Area -->
+    <div class="flex-1 flex flex-col bg-white">
+      <!-- Chat Header -->
+      <header class="p-4 bg-gray-100 border-b border-gray-300 flex items-center justify-between">
+        <h1 class="text-lg font-semibold">{{ amigoSeleccionado?.nombre || 'Seleccione un amigo' }}</h1>
+        <button class="text-blue-500 hover:text-blue-600 text-sm" (click)="agregarAmigos()">Agregar más amigos</button>
+      </header>
+  
+      <!-- Chat Messages -->
+      <div class="flex-1 overflow-y-auto p-4">
+        <ng-container *ngIf="amigoSeleccionado; else noChat">
+          <div *ngFor="let mensaje of amigoSeleccionado.mensajes" [class.justify-end]="mensaje.propio" class="flex mb-4">
+            <ng-container *ngIf="!mensaje.propio">
+              <div class="w-8 h-8 rounded-full bg-gray-300 overflow-hidden mr-3">
+                <img [src]="amigoSeleccionado.foto" alt="{{ amigoSeleccionado.nombre }}" />
+              </div>
+            </ng-container>
+  
+            <div [class.bg-blue-500]="mensaje.propio" 
+                 [class.bg-gray-100]="!mensaje.propio" 
+                 [class.text-white]="mensaje.propio" 
+                 class="p-3 rounded-md max-w-md">
+              <p class="text-sm">{{ mensaje.texto }}</p>
+            </div>
+          </div>
+        </ng-container>
+  
+        <!-- No chat selected -->
+        <ng-template #noChat>
+          <p class="text-center text-gray-500 mt-10">Selecciona un amigo para iniciar un chat</p>
+        </ng-template>
+      </div>
+  
+      <!-- Chat Input -->
+      <footer class="p-4 bg-gray-100 border-t border-gray-300 flex items-center" *ngIf="amigoSeleccionado">
+        <input
+          type="text"
+          [(ngModel)]="nuevoMensaje"
+          placeholder="Escribe un mensaje..."
+          class="flex-1 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button 
+          class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2 hover:bg-blue-600"
+          (click)="enviarMensaje()"
+        >
+          Enviar
+        </button>
+      </footer>
+    </div>
+  </div>
+  
