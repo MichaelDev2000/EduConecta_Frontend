@@ -27,6 +27,7 @@ import { CperfilComponent } from './v-educonecta/cperfil/cperfil.component';
 import { CeditarPerfilComponent } from './v-educonecta/ceditar-perfil/ceditar-perfil.component';
 import { CchatsComponent } from './v-educonecta/cchats/cchats.component';
 import { CchatIAComponent } from './v-educonecta/cchat-ia/cchat-ia.component';
+import { CusuarioComponent } from './v-educonecta/cusuario/cusuario.component';
 
 
 
