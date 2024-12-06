@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'main', component: VEduconectaComponent },
   { path: 'educonecta', component: VEduconectaComponent }
   
+
 ]
 
 @NgModule({
