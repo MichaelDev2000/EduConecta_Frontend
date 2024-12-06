@@ -49,13 +49,8 @@ import { CeditarPerfilComponent } from './v-educonecta/ceditar-perfil/ceditar-pe
     AmistadesComponent,
     CheadermainComponent,
     CSectionHacemosComponent,
-    VPerfilComponent,
     CperfilComponent,
     CeditarPerfilComponent,
-    
-
-
-
   ],
   imports: [
     BrowserModule,
