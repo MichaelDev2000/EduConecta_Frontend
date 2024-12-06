@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VPerfilComponent } from './v-perfil.component';
+import { CeditarPerfilComponent } from './ceditar-perfil.component';
 
-describe('VPerfilComponent', () => {
-  let component: VPerfilComponent;
-  let fixture: ComponentFixture<VPerfilComponent>;
+describe('CeditarPerfilComponent', () => {
+  let component: CeditarPerfilComponent;
+  let fixture: ComponentFixture<CeditarPerfilComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [VPerfilComponent]
+      declarations: [CeditarPerfilComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VPerfilComponent);
+    fixture = TestBed.createComponent(CeditarPerfilComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

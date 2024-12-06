@@ -23,6 +23,8 @@ import { AmistadesComponent } from './v-educonecta/cvistamain/amistades/amistade
 import { CheadermainComponent } from './v-educonecta/cheadermain/cheadermain.component';
 import { CSectionHacemosComponent } from './v-landing-page/c-section-hacemos/c-section-hacemos.component';
 import { VPerfilComponent } from './v-perfil/v-perfil.component';
+import { CperfilComponent } from './v-educonecta/cperfil/cperfil.component';
+import { CeditarPerfilComponent } from './v-educonecta/ceditar-perfil/ceditar-perfil.component';
 
 
 
@@ -48,6 +50,8 @@ import { VPerfilComponent } from './v-perfil/v-perfil.component';
     CheadermainComponent,
     CSectionHacemosComponent,
     VPerfilComponent,
+    CperfilComponent,
+    CeditarPerfilComponent,
     
 
 
