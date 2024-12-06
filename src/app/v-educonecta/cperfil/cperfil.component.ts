@@ -11,12 +11,13 @@ export class CperfilComponent {
       {
         nombre: 'Pepito Pérez',
         foto: 'https://randomuser.me/api/portraits/men/1.jpg',
-        enLinea: true,
-        bio: '¡maiquel is gay!',
-      },
+        rol: 'estudante',
+        biografia:`Ubicación:Bogotá,Colombia \n\ncorreo:pepitoperez604@gmail.com \nhola buenas tardes`,
+      }
       
       // Puedes agregar más amigos aquí
     ];
+    
   
     // Función para abrir el chat con un amigo
     abrirChat(amigo: any) {
