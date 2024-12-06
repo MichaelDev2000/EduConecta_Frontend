@@ -24,6 +24,8 @@ import { CheadermainComponent } from './v-educonecta/cheadermain/cheadermain.com
 import { CSectionHacemosComponent } from './v-landing-page/c-section-hacemos/c-section-hacemos.component';
 import { CperfilComponent } from './v-educonecta/cperfil/cperfil.component';
 import { CeditarPerfilComponent } from './v-educonecta/ceditar-perfil/ceditar-perfil.component';
+import { CchatsComponent } from './v-educonecta/cchats/cchats.component';
+
 
 
 
@@ -50,6 +52,7 @@ import { CeditarPerfilComponent } from './v-educonecta/ceditar-perfil/ceditar-pe
     CSectionHacemosComponent,
     CperfilComponent,
     CeditarPerfilComponent,
+    CchatsComponent,
   ],
   imports: [
     BrowserModule,
