@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';// este lo agrego yo yiyo para que funcione la opcion de publicar publicaicon//
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,7 @@ import { CSectionHacemosComponent } from './v-landing-page/c-section-hacemos/c-s
 import { CperfilComponent } from './v-educonecta/cperfil/cperfil.component';
 import { CeditarPerfilComponent } from './v-educonecta/ceditar-perfil/ceditar-perfil.component';
 import { CchatsComponent } from './v-educonecta/cchats/cchats.component';
+import { CchatIAComponent } from './v-educonecta/cchat-ia/cchat-ia.component';
 
 
 
@@ -53,6 +55,7 @@ import { CchatsComponent } from './v-educonecta/cchats/cchats.component';
     CperfilComponent,
     CeditarPerfilComponent,
     CchatsComponent,
+    CchatIAComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { CchatsComponent } from './v-educonecta/cchats/cchats.component';
     AppRoutingModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })

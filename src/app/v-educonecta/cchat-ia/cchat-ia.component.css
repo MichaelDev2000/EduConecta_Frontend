@@ -1,0 +1,90 @@
+/* Estilo del chat */
+.fixed {
+    position: fixed;
+}
+
+.bottom-4 {
+    bottom: 1rem;
+}
+
+.right-4 {
+    right: 1rem;
+}
+
+/* Fondo del chat */
+.bg-blue-500 {
+    /* Color de fondo azul vibrante */
+    background-color: #1D4ED8;
+    /* Un azul fuerte */
+}
+
+.bg-blue-600 {
+    /* Fondo cuando se pasa el mouse */
+    background-color: #2563EB;
+    /* Azul ligeramente más claro */
+}
+
+/* Contenedor del chat */
+.chat-container {
+    width: 440px;
+    height: 634px;
+    background-color: #1D4ED8;
+    /* Fondo azul */
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #E5E7EB;
+}
+
+.text-white {
+    color: white;
+    /* Asegura que el texto sea blanco para mayor contraste */
+}
+
+/* Estilo para los botones de enviar y cerrar */
+.text-gray-600 {
+    color: #4B5563;
+    /* Gris suave */
+}
+
+.text-gray-900 {
+    color: #111827;
+    /* Gris oscuro */
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.bg-red-600 {
+    /* Botón rojo para cerrar */
+    background-color: #E11D48;
+    /* Rojo vibrante */
+}
+
+.bg-green-500 {
+    /* Botón verde para enviar */
+    background-color: #10B981;
+    /* Verde vibrante */
+}
+
+.bg-gray-100 {
+    /* Color de fondo para los mensajes */
+    background-color: #F3F4F6;
+    /* Gris muy claro */
+}
+
+.border-gray-200 {
+    border-color: #E5E7EB;
+    /* Gris claro */
+}
+
+/* Estilo de los mensajes */
+.pr-4 {
+    padding-right: 1rem;
+}
+
+.text-gray-700 {
+    /* Color de texto para descripciones pequeñas */
+    color: #6B7280;
+    /* Gris oscuro */
+}
