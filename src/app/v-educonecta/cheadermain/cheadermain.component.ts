@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './cheadermain.component.css'
 })
 export class CheadermainComponent {
+  menuAbierto = false;
 
+  menu(): void{
+    this.menuAbierto = !this.menuAbierto;
+  }
 }
