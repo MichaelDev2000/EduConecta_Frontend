@@ -22,6 +22,6 @@ export class GeminiServiceService {
     if (words.length > 100) {
       responseText = words.slice(0, 100).join(' ') + '...';
     }
-    return responseText; // Retornar la respuesta limitada
+    return responseText;
   }
 }
