@@ -12,7 +12,6 @@ export class GeminiServiceService {
 
   constructor() { }
 
-  // Método para generar contenido basado en el prompt
   async generate(prompt: string): Promise<string> {
     const result = await this.model.generateContent(prompt);
     const response = await result.response;
