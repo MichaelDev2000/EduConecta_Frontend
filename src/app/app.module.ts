@@ -29,6 +29,7 @@ import { CeditarPerfilComponent } from './v-educonecta/ceditar-perfil/ceditar-pe
 import { CchatsComponent } from './v-educonecta/cchats/cchats.component';
 import { CchatIAComponent } from './v-educonecta/cchat-ia/cchat-ia.component';
 import { CusuarioComponent } from './v-educonecta/cusuario/cusuario.component';
+import { environment } from '../environments/environment';
 
 
 
@@ -62,7 +63,7 @@ import { CusuarioComponent } from './v-educonecta/cusuario/cusuario.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     provideClientHydration(),

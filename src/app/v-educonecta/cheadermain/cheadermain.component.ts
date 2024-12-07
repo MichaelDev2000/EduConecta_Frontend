@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './cheadermain.component.css'
 })
 export class CheadermainComponent {
+  //menu perfil
   menuAbierto = false;
 
   menu(): void{

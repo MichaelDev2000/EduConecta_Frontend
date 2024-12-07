@@ -1,95 +1,96 @@
 
 <div class="hero">
-    <div class="auth-container">
-      <!-- Cuadro de bienvenida -->
-      <div class="welcome-box">
-        <h2>Bienvenidos a Edu Conecta</h2>
-        <p>
-          Una plataforma educativa diseñada para conectar estudiantes y
-          profesores en un entorno de aprendizaje moderno. Aquí podrás
-          administrar tus clases, interactuar con tus compañeros y mejorar tus
-          habilidades.
-        </p>
-        <p>
-          ¡Regístrate ahora para ser parte de nuestra comunidad o inicia sesión
-          para continuar con tu aprendizaje!
-        </p>
+  <div class="auth-container">
+    <!-- Cuadro de bienvenida -->
+    <div class="welcome-box">
+      <h2>Bienvenidos a Edu Conecta</h2>
+      <p>
+        Una plataforma educativa diseñada para conectar estudiantes y
+        profesores en un entorno de aprendizaje moderno. Aquí podrás
+        administrar tus clases, interactuar con tus compañeros y mejorar tus
+        habilidades.
+      </p>
+      <p>
+        ¡Regístrate ahora para ser parte de nuestra comunidad o inicia sesión
+        para continuar con tu aprendizaje!
+      </p>
+    </div>
+
+    <!-- Cuadro de formularios -->
+    <div class="form-box">
+      <div class="button-box">
+        <button
+          class="toggle-btn" [class.active]="activeForm === 'login'"
+          (click)="showLoginForm()">Iniciar Sesion
+        </button>
+        <button class="toggle-btn" [class.active]="activeForm === 'register' "
+          (click)="showRegisterForm()">Registrate
+        </button>
       </div>
-  
-      <!-- Cuadro de formularios -->
-      <div class="form-box">
-        <div class="button-box">
-          <button
-            class="toggle-btn" [class.active]="activeForm === 'login'"(click)="showLoginForm()">Iniciar Sesion
-          </button>
-          <button class="toggle-btn" [class.active]="activeForm === 'register' "(click)="showRegisterForm()">Registrate
-          </button>
-        </div>
-  
-        <!-- Formulario de Login -->
-        <form
-          id="login" class="input-group" [class.active]="activeForm === 'login'">
-          <label for="login-username">Correo electronico </label>
-          <input id="login-username" type="text" class="input-field" placeholder="Ingresa tu usuario o nombre" required />
-          <label for="login-password">Contraseña</label>
-          <input
-            id="login-password"
-            type="password"
-            class="input-field"
-            placeholder="Ingresa tu contraseña"
-            required
-          />
-          <button type="button" class="submit-btn">Iniciar Sesión</button>
-          <p class="toggle-text">
-            <a href="javascript:void(0)" (click)="showForgotPasswordForm()">
-              ¿Olvidaste tu contraseña?
-            </a>
-          </p>
-          <p class="toggle-text">
-            ¿No tienes una cuenta?
-            <a href="javascript:void(0)" (click)="showRegisterForm()">Regístrate</a>
-          </p>
-        </form>
-  
-        <!-- Formulario de Registro -->
-        <form
-          id="register"
-          class="input-group"
-          [class.active]="activeForm === 'register'"
-        >
-          <label for="register-name">Nombres </label>
-          <input
-            id="register-name"
-            type="text"
-            class="input-field"
-            placeholder="Ingresa tu nombre completo"
-            required
-          />
-          <label for="register-name">Apellidos</label>
-          <input
-            id="register-name"
-            type="text"
-            class="input-field"
-            placeholder="Ingresa tu nombre completo"
-            required
-          />
-          <label for="register-email">Correo Electrónico</label>
-          <input
-            id="register-email"
-            type="email"
-            class="input-field"
-            placeholder="Ingresa tu correo electrónico"
-            required
-          />
-          <label for="register-password">Contraseña</label>
-          <input
-            id="register-password"
-            type="password"
-            class="input-field"
-            placeholder="Ingresa tu contraseña"
-            required
-          />
-          <!--
+
+      <!-- Formulario de Login -->
+      <form
+        id="login"
+        class="input-group"
+        [class.active]="activeForm === 'login'"
+        #loginForm="ngForm"
+        (ngSubmit)="onLogin(loginForm)">
+        <label for="login-username">Correo electrónico</label>
+        <input
+          id="login-username"
+          type="email"
+          class="input-field"
+          placeholder="Ingresa tu correo"
+          name="email"
+          required
+          ngModel />
+        <label for="login-password">Contraseña</label>
+        <input
+          id="login-password"
+          type="password"
+          class="input-field"
+          placeholder="Ingresa tu contraseña"
+          name="password"
+          required
+          ngModel />
+        <button type="submit" class="submit-btn">Iniciar Sesión</button>
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      </form>
+
+      <!-- Formulario de Registro -->
+      <form
+        id="register"
+        class="input-group"
+        [class.active]="activeForm === 'register'">
+        <label for="register-name">Nombres </label>
+        <input
+          id="register-name"
+          type="text"
+          class="input-field"
+          placeholder="Ingresa tu nombre completo"
+          required />
+        <label for="register-name">Apellidos</label>
+        <input
+          id="register-name"
+          type="text"
+          class="input-field"
+          placeholder="Ingresa tu nombre completo"
+          required />
+        <label for="register-email">Correo Electrónico</label>
+        <input
+          id="register-email"
+          type="email"
+          class="input-field"
+          placeholder="Ingresa tu correo electrónico"
+          required />
+        <label for="register-password">Contraseña</label>
+        <input
+          id="register-password"
+          type="password"
+          class="input-field"
+          placeholder="Ingresa tu contraseña"
+          required />
+        <!--
           <label for="register-confirm-password">Confirmar Contraseña</label>
           <input
             id="register-confirm-password"
@@ -99,48 +100,46 @@
             required
           />
           -->
-          <label for="biografia">Biografia</label>
-          <input
-            id="biografia"
-            type="text"
-            class="input-field"
-            placeholder="escriba su biografia"
-            required
-          />
-          <button type="button" class="submit-btn">Registrarse</button>
-          <p class="toggle-text">
-            ¿Ya tienes una cuenta?
-            <a href="javascript:void(0)" (click)="showLoginForm()">Inicia sesión</a>
-          </p>
-        </form>
-  
-        <!-- Formulario de Recuperación de Contraseña -->
-        <form
-          id="forgot-password"
-          class="input-group"
-          [class.active]="activeForm === 'forgotPassword'"
-        >
-          <label for="forgot-email">Correo Electrónico</label>
-          <input
-            id="forgot-email"
-            type="email"
-            class="input-field"
-            placeholder="Ingresa tu correo electrónico"
-            required
-          />
-          <label for="forgot-confirm-email">Confirmar Correo Electrónico</label>
-          <input
-            id="forgot-confirm-email"
-            type="email"
-            class="input-field"
-            placeholder="Confirma tu correo electrónico"
-            required
-          />
-          <button type="button" class="submit-btn">Enviar</button>
-          <p class="toggle-text">
-            <a href="javascript:void(0)" (click)="showLoginForm()">Volver al Iniciar Sesion</a>
-          </p>
-        </form>
-      </div>
+        <label for="biografia">Biografia</label>
+        <input
+          id="biografia"
+          type="text"
+          class="input-field"
+          placeholder="escriba su biografia"
+          required />
+        <button type="button" class="submit-btn">Registrarse</button>
+        <p class="toggle-text">
+          ¿Ya tienes una cuenta?
+          <a href="javascript:void(0)" (click)="showLoginForm()">Inicia
+            sesión</a>
+        </p>
+      </form>
+
+      <!-- Formulario de Recuperación de Contraseña -->
+      <form
+        id="forgot-password"
+        class="input-group"
+        [class.active]="activeForm === 'forgotPassword'">
+        <label for="forgot-email">Correo Electrónico</label>
+        <input
+          id="forgot-email"
+          type="email"
+          class="input-field"
+          placeholder="Ingresa tu correo electrónico"
+          required />
+        <label for="forgot-confirm-email">Confirmar Correo Electrónico</label>
+        <input
+          id="forgot-confirm-email"
+          type="email"
+          class="input-field"
+          placeholder="Confirma tu correo electrónico"
+          required />
+        <button type="button" class="submit-btn">Enviar</button>
+        <p class="toggle-text">
+          <a href="javascript:void(0)" (click)="showLoginForm()">Volver al
+            Iniciar Sesion</a>
+        </p>
+      </form>
     </div>
   </div>
+</div>
