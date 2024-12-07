@@ -1,90 +1,72 @@
-/* Estilo del chat */
-.fixed {
-    position: fixed;
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: calc(100% - 120px);
+    /* Ajuste para que no se desborde */
 }
 
-.bottom-4 {
-    bottom: 1rem;
+.message-content {
+    max-width: 80%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
-.right-4 {
-    right: 1rem;
-}
-
-/* Fondo del chat */
-.bg-blue-500 {
-    /* Color de fondo azul vibrante */
-    background-color: #1D4ED8;
-    /* Un azul fuerte */
-}
-
-.bg-blue-600 {
-    /* Fondo cuando se pasa el mouse */
-    background-color: #2563EB;
-    /* Azul ligeramente más claro */
-}
-
-/* Contenedor del chat */
-.chat-container {
-    width: 440px;
-    height: 634px;
-    background-color: #1D4ED8;
-    /* Fondo azul */
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid #E5E7EB;
-}
-
-.text-white {
-    color: white;
-    /* Asegura que el texto sea blanco para mayor contraste */
-}
-
-/* Estilo para los botones de enviar y cerrar */
-.text-gray-600 {
-    color: #4B5563;
-    /* Gris suave */
-}
-
-.text-gray-900 {
-    color: #111827;
-    /* Gris oscuro */
-}
-
-.text-sm {
-    font-size: 0.875rem;
-}
-
-.bg-red-600 {
-    /* Botón rojo para cerrar */
-    background-color: #E11D48;
-    /* Rojo vibrante */
-}
-
-.bg-green-500 {
-    /* Botón verde para enviar */
+.user-message {
+    align-self: flex-start;
+    /* Alinea los mensajes del usuario a la izquierda */
     background-color: #10B981;
-    /* Verde vibrante */
+    /* Color de fondo del mensaje del usuario */
+    color: white;
+    /* Color del texto del usuario */
+    border-radius: 15px;
+    border: 1px solid #1D4ED8;
 }
 
-.bg-gray-100 {
-    /* Color de fondo para los mensajes */
-    background-color: #F3F4F6;
-    /* Gris muy claro */
+.ai-message {
+    align-self: flex-end;
+    /* Alinea los mensajes de la IA a la derecha */
+    background-color: #E5E7EB;
+    /* Color de fondo de los mensajes de IA */
+    color: #1D4ED8;
+    /* Color del texto de IA */
+    border-radius: 15px;
+    border: 1px solid #B0B0B0;
 }
 
-.border-gray-200 {
-    border-color: #E5E7EB;
-    /* Gris claro */
+input[type="text"] {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #D1D5DB;
 }
 
-/* Estilo de los mensajes */
-.pr-4 {
-    padding-right: 1rem;
+button {
+    cursor: pointer;
+    background-color: #10B981;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
 }
 
-.text-gray-700 {
-    /* Color de texto para descripciones pequeñas */
-    color: #6B7280;
-    /* Gris oscuro */
+button:hover {
+    background-color: #16A34A;
+}
+
+form {
+    display: flex;
+    width: 100%;
+}
+
+body::-webkit-scrollbar {
+    width: 15px;
+    height: 100px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border: 3px solid #fff;
+    border-radius: 10px;
 }
