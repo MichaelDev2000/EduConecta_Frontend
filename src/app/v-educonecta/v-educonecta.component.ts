@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './v-educonecta.component.css'
 })
 export class VEduconectaComponent {
-
+  
+  
 }

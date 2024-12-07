@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private apiUrl = 'http://localhost:8080/login';
   private readonly TOKEN_KEY = 'token';
-  private readonly USER_INFO_KEY = 'userInfo';
+  private readonly USER_INFO_KEY = 'user';
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +29,8 @@ export class AuthService {
 
 
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    const tokenUser = localStorage.getItem(this.TOKEN_KEY);
+    return tokenUser;
   }
 
 
