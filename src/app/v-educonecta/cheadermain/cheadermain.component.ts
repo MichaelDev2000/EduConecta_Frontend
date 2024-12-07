@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './cheadermain.component.css'
 })
 export class CheadermainComponent {
-
+  constructor() { }
 }
