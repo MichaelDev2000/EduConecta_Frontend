@@ -59,15 +59,17 @@ import { environment } from '../environments/environment';
     CeditarPerfilComponent,
     CchatsComponent,
     CchatIAComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient()
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent]
 })

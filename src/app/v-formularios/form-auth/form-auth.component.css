@@ -184,3 +184,13 @@ label {
 .toggle-text a:hover {
   text-decoration: underline;
 }
+
+/* Contenedor del botón */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f9f9f9;
+}
+

@@ -13,6 +13,7 @@ export class FormAuthComponent {
   errorMessage = '';
 
 
+
   constructor(private authService: AuthService, private router: Router) { }
 
   showLoginForm() {
