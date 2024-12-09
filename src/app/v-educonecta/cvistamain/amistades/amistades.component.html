@@ -2,32 +2,29 @@
   <p class="font-bold text-lg mb-4 text-center">AMISTADES</p>
 
   <!-- Lista de amigos -->
-  <div *ngFor="let amigo of amigos" class="publicacion flex flex-col sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+  <div class="publicacion flex flex-col sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
     <!-- Contenedor de la información del amigo -->
     <div class="flex items-center gap-4 flex-1">
       <img 
-        [src]="amigo.foto" 
-        alt="Imagen de {{ amigo.nombre }}" 
+        src="image-placeholder.png" 
+        alt="Imagen de amigo 1"
         class="object-cover object-center w-12 h-12 rounded-full border border-gray-300">
       
       <div class="text-left">
-        <p class="font-bold text-gray-700">{{ amigo.nombre }}</p>
-        <p class="text-sm font-medium" [class.text-green-500]="amigo.enLinea" [class.text-gray-500]="!amigo.enLinea">
-          {{ amigo.enLinea ? 'En línea' : 'Desconectado' }}
-        </p>
-        <p class="text-sm text-gray-600 italic">
-          "{{ amigo.bio }}"
+        <p class="font-bold text-gray-700">Carlos</p>
+        <p class="text-sm font-medium text-green-500">En línea</p>
+        
+        <!-- Biografía: se muestra en pantallas grandes y se oculta en pantallas pequeñas -->
+        <p class="text-sm text-gray-600 italic hidden  max-[1100px]:hidden min-[1101px]:block ">
+          "Esta es una biografía del amigo. Puede ser más larga dependiendo de la información que tengas."
         </p>
       </div>
     </div>
-
-    <!-- Contenedor del botón CHAT -->
-    
   </div>
+
+  <!-- Botón de chat -->
   <div class="sm:flex-shrink-0">
-    <button
-    routerLink="/educonecta/chats"
-      class="rounded-lg bg-blue-500 py-2 px-4 text-sm font-bold uppercase text-white shadow-md transition-all hover:bg-blue-600 w-full sm:w-auto">
+    <button class="rounded-lg bg-blue-500 py-2 px-4 text-sm font-bold uppercase text-white shadow-md transition-all hover:bg-blue-600 w-full sm:w-auto">
       Chat
     </button>
   </div>
