@@ -7,12 +7,12 @@
       </div>
   
     <!-- perfil -->
-    <div *ngFor="let perfil of perfil" class=" flex justify-between  sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+    <div class=" flex justify-between  sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
       <!-- Contenedor de la información del perfil -->
     <form action="">
       <div class="flex flex-1 items-center gap-4 flex-1">
         <img 
-          alt="imagen de {{perfil.nombre}}" 
+          alt="imagen de {{usuario.usuNombre}}" 
           class="object-cover object-center w-40 h-40 rounded-full border border-gray-300">
           
         <div class="text-left">
@@ -29,40 +29,74 @@
     <form action="">
         <div class="my-4 w-[100%]">
             <label for="" class="my-4">Nombres</label><br>
-            <input class="border border-blue w-[100%]" type="text" placeholder="nombres del tipejo">
+            <input class="border border-blue w-[100%]" type="text" placeholder="{{usuario.usuNombre}}">
           </div>
           <div class="my-4 w-[100%]">
             <label for="" class="my-4">Apellidos</label><br>
-            <input class="border border-blue w-[100%]" type="text" placeholder="apellidos del tipejo">
+            <input class="border border-blue w-[100%]" type="text" placeholder="{{usuario.usuApellidos}}">
           </div>
           <div class="my-4 w-[100%]">
             <label for="" >Biografia</label><br>
-            <input class="border border-blue w-[100%] h-[300px]" type="text" placeholder="no se, informacion">
+            <input class="border border-blue w-[100%] h-[300px]" type="text" placeholder="{{usuario.usuBiografia}}">
           </div>
           <div class="flex justify-end">
             <button class="my-4 border border-blue w-[200px] h-[50px] rounded-lg">Guardar cambios</button>
           </div>
     </form>
   </section>
-  <section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6  bg-white shadow-md  mx-[25%] mt-4">
-    <h1 class=" font-bold text-xl">Cambiar Contraseña</h1>
-    <form action="">
-        <div class="my-4 w-[100%">
-            <label for="" class="my-4">Contraseña actual</label><br>
-            <input class="border border-blue w-[100%]" type="text" placeholder="Ingrese su contraseña actual">
-          </div>
-          <div class="my-4 w-[100%">
-            <label for="" class="my-4">Nueva Contraseña</label><br>
-            <input class="border border-blue w-[100%]" type="text" placeholder="ingrese su nueva contraseña">
-            <input  type="email">
-          </div>
-          <div class="my-4 w-[100%">
-            <label for="" class="my-4">Confirmar Nueva Contraseña</label><br>
-            <input class="border border-blue w-[100%]" type="text" placeholder="vuelva a ingresar la nueva contraseña">
-            <input  type="text">
-          </div>
-          <div class="flex justify-end">
-          <button class="my-4 border border-blue w-[200px] h-[50px] rounded-lg">Cambiar Contraseña</button>
-        </div>
-    </form>
-  </section>
+  <section
+  class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md mx-[25%] mt-4">
+  <h1 class="font-bold text-xl">Cambiar Contraseña</h1>
+  <form
+    #changePasswordForm="ngForm"
+    (ngSubmit)="onChangePassword(changePasswordForm)">
+    <div class="my-4 w-[100%]">
+      <label for="current-password" class="my-4">Contraseña actual</label><br>
+      <input
+        id="current-password"
+        class="border border-blue w-[100%]"
+        type="password"
+        placeholder="Ingrese su contraseña actual"
+        name="currentPassword"
+        ngModel
+        required />
+    </div>
+
+    <div class="my-4 w-[100%]">
+      <label for="new-password" class="my-4">Nueva Contraseña</label><br>
+      <input
+        id="new-password"
+        class="border border-blue w-[100%]"
+        type="password"
+        placeholder="Ingrese su nueva contraseña"
+        name="newPassword"
+        ngModel
+        required />
+    </div>
+
+    <div class="my-4 w-[100%]">
+      <label for="confirm-password" class="my-4">Confirmar Nueva Contraseña</label><br>
+      <input
+        id="confirm-password"
+        class="border border-blue w-[100%]"
+        type="password"
+        placeholder="Vuelva a ingresar la nueva contraseña"
+        name="confirmPassword"
+        ngModel
+        required />
+    </div>
+
+    <div class="flex justify-end">
+      <button
+        type="submit"
+        class="my-4 border border-blue w-[200px] h-[50px] rounded-lg">
+        Cambiar Contraseña
+      </button>
+    </div>
+
+    <!-- Mensajes de éxito o error -->
+    <div *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="text-green-500">{{ successMessage }}</div>
+  </form>
+</section>
+
