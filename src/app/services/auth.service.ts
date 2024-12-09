@@ -31,13 +31,13 @@ export class AuthService {
     return this.http.post(this.apiUrl, body.toString(), { headers });
   }
   updatePassword(userId: string, newPassword: string, oldPassword: string): Observable<any> {
-    const url = `${this.apiUrl}?UserId=${encodeURIComponent(userId)}&PassNew=${encodeURIComponent(newPassword)}&PassOld=${encodeURIComponent(oldPassword)}`;
+    const url = `${this.apiUrlChangePassword}?UserId=${encodeURIComponent(userId)}&PassNew=${encodeURIComponent(newPassword)}&PassOld=${encodeURIComponent(oldPassword)}`;
     
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
-    return this.http.put(url, {}, { headers });
+    return this.http.patch(url, {}, { headers });
   }
 
 
