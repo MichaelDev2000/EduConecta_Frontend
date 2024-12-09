@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -14,5 +15,6 @@ export class UsuarioInfoService {
     "usuBiografia": this.parsedUser.usuBiografia,
     "usuImgperfil": this.parsedUser.usuImgperfil,
   }
-  constructor() { }
+  constructor(private http:HttpClient) { }
+  
 }
