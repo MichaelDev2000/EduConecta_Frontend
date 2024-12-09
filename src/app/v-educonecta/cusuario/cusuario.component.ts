@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cusuario',
@@ -6,14 +7,21 @@ import { Component } from '@angular/core';
   styleUrl: './cusuario.component.css'
 })
 export class CusuarioComponent {
+  usuarioId: string | null = null;
 
-  perfil = [
-    {
-      nombre: 'Rosa Melano',
-      foto: 'https://randomuser.me/api/portraits/men/1.jpg',
-      rol: 'Mentor',
-      biografia:`Ubicación:Bogotá,Colombia \n\ncorreo:rosamelano604@gmail.com \nhola buenas tardes`,
-    }
-    
-  ];
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.usuarioId = params.get('id');
+      if (this.usuarioId) {
+        this.obtenerUsuario(this.usuarioId);
+      }
+    });
+  }
+
+  obtenerUsuario(id: string) {
+    console.log(`Consultando usuario con id: ${id}`);
+  }
+
 }

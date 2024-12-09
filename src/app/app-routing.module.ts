@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'educonecta/perfil', component: CperfilComponent },
   { path: 'educonecta/grupos', component: CgruposComponent },
   { path: 'educonecta/editarPerfil', component: CeditarPerfilComponent },
-  { path: 'educonecta/usuario', component: CusuarioComponent }
+  { path: 'educonecta/usuario/:id', component: CusuarioComponent }
 
 
 ]

@@ -44,16 +44,16 @@ export class CheadermainComponent implements OnInit {
     this.userInfo.listarUsuario().subscribe((data) => {
       this.usuarios = data;
       this.filteredUsuarios = data;
-      console.log("usuario",this.usuarios);
-      console.log("usuariosFilter",this.filteredUsuarios);
+      console.log("usuario", this.usuarios);
+      console.log("usuariosFilter", this.filteredUsuarios);
     });
   }
 
   onSearch(): void {
     if (this.searchText.trim() === '') {
-      this.filteredUsuarios = this.usuarios; 
+      this.filteredUsuarios = this.usuarios;
     } else {
-      console.log(this.searchText.toLowerCase()); 
+      console.log(this.searchText.toLowerCase());
       this.filteredUsuarios = this.usuarios.filter(usuario =>
         (usuario.usuNombres && usuario.usuNombres.toLowerCase().includes(this.searchText.toLowerCase())) ||
         (usuario.usuApellidos && usuario.usuApellidos.toLowerCase().includes(this.searchText.toLowerCase()))
@@ -83,5 +83,9 @@ export class CheadermainComponent implements OnInit {
     if (usuariosMenu && !usuariosMenu.contains(event.target as Node) && inputElement && !inputElement.contains(event.target as Node)) {
       this.showUsuarios = false;
     }
+  }
+
+  irAUsuario(id: string) {
+    this.router.navigate([`/educonecta/usuario/${id}`]);
   }
 }
