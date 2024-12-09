@@ -12,36 +12,32 @@ import { NgForm } from '@angular/forms';
 export class CeditarPerfilComponent {
 
   usuario:any;
+  usuarioid:string = '';
 
       
     
   errorMessage: string = '';
   successMessage: string = '';
 
-  constructor(private authService: AuthService, private usuarioInfo : UsuarioInfoService) {
+  constructor(private authService: AuthService, private usuarioInfo : UsuarioInfoService, private userInfo: UsuarioInfoService) {
     this.usuario = this.usuarioInfo.usuarioDatos;
+    
   }
 
   onChangePassword(changePasswordForm: NgForm) {
     if (changePasswordForm.valid) {
-      const currentPassword = changePasswordForm.value.currentPassword;
+      const userId = this.usuarioid; // Este valor puede venir de localStorage o algún otro lugar.
       const newPassword = changePasswordForm.value.newPassword;
-      const confirmPassword = changePasswordForm.value.confirmPassword;
-
-      if (newPassword !== confirmPassword) {
-        this.errorMessage = 'Las contraseñas no coinciden.';
-        return;
-      }
-
-      this.authService.changePassword(currentPassword, newPassword, confirmPassword).subscribe(
+      const oldPassword = changePasswordForm.value.oldPassword;
+  
+      this.authService.updatePassword(userId, newPassword, oldPassword).subscribe(
         (response) => {
-          this.successMessage = 'Contraseña cambiada con éxito.';
-          this.errorMessage = '';
-          changePasswordForm.reset();
+          console.log('Contraseña actualizada con éxito:', response);
+          alert('Contraseña cambiada con éxito.');
         },
         (error) => {
-          console.error('Error al cambiar contraseña:', error);
-          this.errorMessage = 'Error al cambiar contraseña. Intenta de nuevo.';
+          console.error('Error al cambiar la contraseña:', error);
+          alert('Hubo un error al cambiar la contraseña. Inténtalo de nuevo.');
         }
       );
     }
