@@ -1,10 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioInfoService {
+  private apiUserList = "http://localhost:8080/ApiUsers/usuarios";
+
+
   readonly userInfo = localStorage.getItem('user');
   parsedUser = this.userInfo ? JSON.parse(this.userInfo) : null;
   usuarioDatos = {
@@ -17,4 +21,7 @@ export class UsuarioInfoService {
   }
   constructor(private http:HttpClient) { }
   
+  listarUsuario():Observable<any>{
+    return this.http.get(this.apiUserList);
+  }
 }
