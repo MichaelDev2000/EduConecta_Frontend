@@ -1,95 +1,87 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PostServicesService } from '../../../services/post-services.service';
+import { Publicacion } from '../../../models/publicacion.model';
+import { Tema } from '../../../models/tema.model';
+
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css'],
 })
-export class FeedComponent {
-  publicaciones = [
-    {
-      usuario: 'Juan Pérez',
-      usuarioImagen: 'https://randomuser.me/api/portraits/men/1.jpg',
-      fecha: new Date(),
-      contenido: 'Este es un ejemplo de una publicación interesante.',
-      tema: 'Matemáticas',
-      likes: 5,
-      haDadoLike: false,
-      comentarios: [],
-      mostrarComentarios: false,
-      nuevoComentario: '',
-    },
-    {
-      usuario: 'María López',
-      usuarioImagen: 'https://randomuser.me/api/portraits/women/1.jpg',
-      fecha: new Date(),
-      contenido: 'Me encanta compartir cosas aquí con todos ustedes.',
-      tema: 'Ciencias',
-      likes: 3,
-      haDadoLike: false,
-      comentarios: [{ usuario: 'Ana', texto: '¡Qué interesante!' }],
-      mostrarComentarios: false,
-      nuevoComentario: '',
-    },
-  ];
+export class FeedComponent implements OnInit {
 
+  temas: Tema[] = [];  
+  publicacion: Publicacion[] = [];
+  publicacionesFiltradas: Publicacion[] = [];
   nuevaPublicacion: string = '';
   temaSeleccionado: string = '';
   filtroTema: string = '';
-  temas: string[] = ['Matemáticas', 'Ciencias', 'Sociales', 'Tecnología'];
-  publicacionesFiltradas = [...this.publicaciones];
 
+  constructor(private postService: PostServicesService) { }
+
+  ngOnInit(): void {
+    this.obtenerPosts();
+    this.obtenerTemas();  
+  }
+
+  // Obtener las publicaciones
+  obtenerPosts(): void {
+    this.postService.obtenerPost().subscribe({
+      next: (data: Publicacion[]) => {
+        this.publicacion = data;
+        this.publicacionesFiltradas = [...this.publicacion];
+      },
+      error: (error: any) => console.log(error),
+      complete: () => {
+        console.log("Se completó exitosamente");
+      }
+    });
+  }
+
+  // Obtener los temas
+  obtenerTemas(): void {
+    this.postService.obtenerTemas().subscribe({
+      next: (data: Tema[]) => {  
+        this.temas = data;
+        console.log(this.temas);
+      },
+      error: (error: any) => console.log(error)
+    });
+  }
+
+  // Filtrar publicaciones por tema
+  filtrarPublicaciones(): void {
+    this.publicacionesFiltradas = this.filtroTema
+      ? this.publicacion.filter((p: Publicacion) => p.temaNombre === this.filtroTema)
+      : [...this.publicacion];
+  }
+
+  // Crear una nueva publicación
   crearPublicacion() {
     if (this.nuevaPublicacion.trim() === '' || this.temaSeleccionado === '') {
       alert('Por favor, escribe algo y selecciona un tema antes de publicar.');
       return;
     }
 
-    const nueva = {
-      usuario: 'Tú',
-      usuarioImagen: 'https://randomuser.me/api/portraits/lego/1.jpg',
-      fecha: new Date(),
-      contenido: this.nuevaPublicacion,
-      tema: this.temaSeleccionado,
-      likes: 0,
-      haDadoLike: false,
-      comentarios: [],
-      mostrarComentarios: false,
-      nuevoComentario: '',
-    };
 
-    this.publicaciones.unshift(nueva);
     this.filtrarPublicaciones();
     this.nuevaPublicacion = '';
     this.temaSeleccionado = '';
   }
 
-  filtrarPublicaciones() {
-    this.publicacionesFiltradas = this.filtroTema
-      ? this.publicaciones.filter((p) => p.tema === this.filtroTema)
-      : [...this.publicaciones];
-  }
 
-  darMeGusta(publicacion: any) {
+  darMeGusta(publicacion: Publicacion) {
     if (publicacion.haDadoLike) {
-      publicacion.likes--;
+      publicacion.numeroLikes--;
     } else {
-      publicacion.likes++;
+      publicacion.numeroLikes++;
     }
     publicacion.haDadoLike = !publicacion.haDadoLike;
   }
 
-  mostrarComentarios(publicacion: any) {
+  mostrarComentarios(publicacion: Publicacion): void {
     publicacion.mostrarComentarios = !publicacion.mostrarComentarios;
   }
 
-  agregarComentario(publicacion: any) {
-    if (publicacion.nuevoComentario.trim() !== '') {
-      publicacion.comentarios.push({
-        usuario: 'Tú',
-        texto: publicacion.nuevoComentario,
-      });
-      publicacion.nuevoComentario = '';
-    }
-  }
 }
