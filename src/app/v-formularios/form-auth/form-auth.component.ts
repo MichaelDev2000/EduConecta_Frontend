@@ -52,4 +52,28 @@ export class FormAuthComponent {
     }
   }
 
+  user = {
+    usuNombres: '',
+  usuApellidos: '',
+  usuCorreo: '',
+  usuContrasena: '',
+  usuBiografia: '',
+  usuStatus: 1,
+  };
+
+
+  register() {
+    this.authService.register(this.user).subscribe(
+      (response) => {
+        console.log('Registro exitoso:', response);
+        alert('Usuario registrado exitosamente');
+      },
+      (error) => {
+        console.log(this.user);
+        console.error('Error al registrarse:', error);
+        alert('Error al registrar usuario');
+      }
+    );
+  }
+
 }

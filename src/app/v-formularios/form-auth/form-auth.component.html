@@ -59,61 +59,63 @@
 
       <!-- Formulario de Registro -->
       <form
-        id="register"
-        class="input-group"
-        [class.active]="activeForm === 'register'">
-        <label for="register-name">Nombres </label>
-        <input
-          id="register-name"
-          type="text"
-          class="input-field"
-          placeholder="Ingresa tu nombre completo"
-          required />
-        <label for="register-name">Apellidos</label>
-        <input
-          id="register-name"
-          type="text"
-          class="input-field"
-          placeholder="Ingresa tu nombre completo"
-          required />
-        <label for="register-email">Correo Electrónico</label>
-        <input
-          id="register-email"
-          type="email"
-          class="input-field"
-          placeholder="Ingresa tu correo electrónico"
-          required />
-        <label for="register-password">Contraseña</label>
-        <input
-          id="register-password"
-          type="password"
-          class="input-field"
-          placeholder="Ingresa tu contraseña"
-          required />
-        <!--
-          <label for="register-confirm-password">Confirmar Contraseña</label>
-          <input
-            id="register-confirm-password"
-            type="password"
-            class="input-field"
-            placeholder="Confirma tu contraseña"
-            required
-          />
-          -->
-        <label for="biografia">Biografia</label>
-        <input
-          id="biografia"
-          type="text"
-          class="input-field"
-          placeholder="escriba su biografia"
-          required />
-        <button type="button" class="submit-btn">Registrarse</button>
-        <p class="toggle-text">
-          ¿Ya tienes una cuenta?
-          <a href="javascript:void(0)" (click)="showLoginForm()">Inicia
-            sesión</a>
-        </p>
-      </form>
+  id="register"
+  class="input-group"
+  [class.active]="activeForm === 'register'"
+  (ngSubmit)="register()">
+  <label for="register-nombres">Nombres</label>
+  <input
+    id="register-nombres"
+    type="text"
+    class="input-field"
+    placeholder="Ingresa tu nombre completo"
+    [(ngModel)]="user.usuNombres"
+    name="usuNombres"
+    required />
+
+  <label for="register-apellidos">Apellidos</label>
+  <input
+    id="register-apellidos"
+    type="text"
+    class="input-field"
+    placeholder="Ingresa tus apellidos"
+    [(ngModel)]="user.usuApellidos"
+    name="usuApellidos"
+    required />
+
+  <label for="register-email">Correo Electrónico</label>
+  <input
+    id="register-email"
+    type="email"
+    class="input-field"
+    placeholder="Ingresa tu correo electrónico"
+    [(ngModel)]="user.usuCorreo"
+    name="usuCorreo"
+    required />
+
+  <label for="register-password">Contraseña</label>
+  <input
+    id="register-password"
+    type="password"
+    class="input-field"
+    placeholder="Ingresa tu contraseña"
+    [(ngModel)]="user.usuContrasena"
+    name="usuContrasena"
+    required />
+
+  <label for="biografia">Biografía</label>
+  <input
+    id="biografia"
+    type="text"
+    class="input-field"
+    placeholder="Escribe tu biografía"
+    [(ngModel)]="user.usuBiografia"
+    name="usuBiografia"
+    required />
+
+  <button type="submit" class="submit-btn">Registrarse</button>
+</form>
+
 
       <!-- Formulario de Recuperación de Contraseña -->
       <form

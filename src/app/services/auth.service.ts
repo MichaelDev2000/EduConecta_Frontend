@@ -8,12 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8080/login';
+  private apiUrlRegister = 'http://localhost:8080/ApiUsers/registrar';
   private readonly TOKEN_KEY = 'token';
   private readonly USER_INFO_KEY = 'user';
 
   constructor(private http: HttpClient) { }
 
-
+  register(user: any): Observable<any> {
+    return this.http.post(this.apiUrlRegister, user);
+  }
 
   login(email: string, password: string): Observable<any> {
     const body = new URLSearchParams();
