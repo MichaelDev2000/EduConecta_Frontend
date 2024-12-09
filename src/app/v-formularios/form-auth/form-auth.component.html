@@ -71,92 +71,88 @@
 
       <!-- Formulario de Registro -->
       <form
-        id="register"
+  id="register"
+  class="input-group"
+  [class.active]="activeForm === 'register'"
+  (ngSubmit)="register()">
+  <label for="register-nombres">Nombres</label>
+  <input
+    id="register-nombres"
+    type="text"
+    class="input-field"
+    placeholder="Ingresa tu nombre completo"
+    [(ngModel)]="user.usuNombres"
+    name="usuNombres"
+    required />
+
+  <label for="register-apellidos">Apellidos</label>
+  <input
+    id="register-apellidos"
+    type="text"
+    class="input-field"
+    placeholder="Ingresa tus apellidos"
+    [(ngModel)]="user.usuApellidos"
+    name="usuApellidos"
+    required />
+
+  <label for="register-email">Correo Electrónico</label>
+  <input
+    id="register-email"
+    type="email"
+    class="input-field"
+    placeholder="Ingresa tu correo electrónico"
+    [(ngModel)]="user.usuCorreo"
+    name="usuCorreo"
+    required />
+
+  <label for="register-password">Contraseña</label>
+  <input
+    id="register-password"
+    type="password"
+    class="input-field"
+    placeholder="Ingresa tu contraseña"
+    [(ngModel)]="user.usuContrasena"
+    name="usuContrasena"
+    required />
+
+  <label for="biografia">Biografía</label>
+  <input
+    id="biografia"
+    type="text"
+    class="input-field"
+    placeholder="Escribe tu biografía"
+    [(ngModel)]="user.usuBiografia"
+    name="usuBiografia"
+    required />
+
+  <button type="submit" class="submit-btn">Registrarse</button>
+</form>
+
+
+      <!-- Formulario de Recuperación de Contraseña -->
+      <form
+        id="forgot-password"
         class="input-group"
-        [class.active]="activeForm === 'register'"
-        #registerForm="ngForm"
-        (ngSubmit)="onRegister(registerForm)">
-        <label for="register-name">Nombres</label>
+        [class.active]="activeForm === 'forgotPassword'">
+        <label for="forgot-email">Correo Electrónico</label>
         <input
-          id="register-name"
-          type="text"
-          class="input-field"
-          placeholder="Ingresa tu nombre completo"
-          name="name"
-          required
-          ngModel
-          #name="ngModel" />
-        <div *ngIf="name.invalid && name.touched" class="validation-error">
-          <small *ngIf="name.errors?.['required']">El nombre es obligatorio.</small>
-        </div>
-
-        <label for="register-lastname">Apellidos</label>
-        <input
-          id="register-lastname"
-          type="text"
-          class="input-field"
-          placeholder="Ingresa tu apellido"
-          name="lastName"
-          required
-          ngModel
-          #lastName="ngModel" />
-        <div *ngIf="lastName.invalid && lastName.touched" class="validation-error">
-          <small *ngIf="lastName.errors?.['required']">El apellido es obligatorio.</small>
-        </div>
-
-        <label for="register-email">Correo Electrónico</label>
-        <input
-          id="register-email"
+          id="forgot-email"
           type="email"
           class="input-field"
           placeholder="Ingresa tu correo electrónico"
-          name="email"
-          required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          ngModel
-          #registerEmail="ngModel" />
-        <div *ngIf="registerEmail.invalid && registerEmail.touched" class="validation-error">
-          <small *ngIf="registerEmail.errors?.['required']">El correo es obligatorio.</small>
-          <small *ngIf="registerEmail.errors?.['pattern']">Ingresa un correo válido.</small>
-        </div>
-
-        <label for="register-password">Contraseña</label>
+          required />
+        <label for="forgot-confirm-email">Confirmar Correo Electrónico</label>
         <input
-          id="register-password"
-          type="password"
+          id="forgot-confirm-email"
+          type="email"
           class="input-field"
-          placeholder="Ingresa tu contraseña"
-          name="password"
-          required
-          minlength="6"
-          maxlength="20"
-          ngModel
-          #registerPassword="ngModel" />
-        <div *ngIf="registerPassword.invalid && registerPassword.touched" class="validation-error">
-          <small *ngIf="registerPassword.errors?.['required']">La contraseña es obligatoria.</small>
-          <small *ngIf="registerPassword.errors?.['minlength']">Mínimo 6 caracteres.</small>
-          <small *ngIf="registerPassword.errors?.['maxlength']">Máximo 20 caracteres.</small>
-        </div>
-
-        <label for="biografia">Biografía</label>
-        <input
-          id="biografia"
-          type="text"
-          class="input-field"
-          placeholder="Escribe tu biografía"
-          name="biography"
-          required
-          ngModel
-          #biography="ngModel" />
-        <div *ngIf="biography.invalid && biography.touched" class="validation-error">
-          <small *ngIf="biography.errors?.['required']">La biografía es obligatoria.</small>
-        </div>
-
-        <button
-          type="submit"
-          class="submit-btn"
-          [disabled]="registerForm.invalid">Registrarse</button>
-        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+          placeholder="Confirma tu correo electrónico"
+          required />
+        <button type="button" class="submit-btn">Enviar</button>
+        <p class="toggle-text">
+          <a href="javascript:void(0)" (click)="showLoginForm()">Volver al
+            Iniciar Sesion</a>
+        </p>
       </form>
     </div>
   </div>

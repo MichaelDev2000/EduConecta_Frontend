@@ -44,27 +44,31 @@ export class FormAuthComponent {
           this.errorMessage = 'Credenciales inválidas. Inténtalo de nuevo.';
         }
       );
-    } else {
-      this.errorMessage = 'Por favor completa todos los campos correctamente.';
     }
   }
 
-  onRegister(registerForm: NgForm) {
-    if (registerForm.valid) {
-      const formData = registerForm.value;
-      console.log('Formulario de Registro:', formData);
-      // Aquí iría la lógica para el registro, como hacer una solicitud HTTP al backend
-    } else {
-      this.errorMessage = 'Por favor completa todos los campos correctamente.';
-    }
+  user = {
+    usuNombres: '',
+  usuApellidos: '',
+  usuCorreo: '',
+  usuContrasena: '',
+  usuBiografia: '',
+  usuStatus: 1,
+  };
+
+
+  register() {
+    this.authService.register(this.user).subscribe(
+      (response) => {
+        console.log('Registro exitoso:', response);
+        alert('Usuario registrado exitosamente');
+      },
+      (error) => {
+        console.log(this.user);
+        console.error('Error al registrarse:', error);
+        alert('Error al registrar usuario');
+      }
+    );
   }
 
-  onForgotPassword(forgotPasswordForm: NgForm) {
-    if (forgotPasswordForm.valid) {
-      console.log('Formulario de Recuperación de Contraseña:', forgotPasswordForm.value);
-      // Aquí iría la lógica para la recuperación de contraseña
-    } else {
-      this.errorMessage = 'Por favor completa el campo de correo correctamente.';
-    }
-  }
 }
