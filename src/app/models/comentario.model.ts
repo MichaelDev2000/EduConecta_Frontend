@@ -2,8 +2,7 @@ export interface Comentario {
     comentarioId: string;
     contenido: string;
     creadoEn: string;
-    actualizadoEn: string | null;
-    usuarioID: string;
+    usuarioId: string;
     usuarioNombre: string;
     usuarioImagen: string | null;
 }

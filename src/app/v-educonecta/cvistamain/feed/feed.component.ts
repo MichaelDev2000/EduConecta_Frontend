@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PostServicesService } from '../../../services/post-services.service';
 import { Publicacion } from '../../../models/publicacion.model';
 import { Tema } from '../../../models/tema.model';
+import { UsuarioInfoService } from '../../../services/usuario-info.service';
+import { Post } from '../../../models/post.model';
+import { ComentarioPost } from '../../../models/comentarioPost.model';
 
 
 @Component({
@@ -11,21 +14,85 @@ import { Tema } from '../../../models/tema.model';
 })
 export class FeedComponent implements OnInit {
 
-  temas: Tema[] = [];  
+  idUsuario = '';
+  temas: Tema[] = [];
   publicacion: Publicacion[] = [];
   publicacionesFiltradas: Publicacion[] = [];
   nuevaPublicacion: string = '';
   temaSeleccionado: string = '';
   filtroTema: string = '';
+  contenidoComent = '';
 
-  constructor(private postService: PostServicesService) { }
+  constructor(private postService: PostServicesService, private userInfo: UsuarioInfoService) {
+    this.idUsuario = this.userInfo.usuarioDatos.usuId;
+  }
 
   ngOnInit(): void {
     this.obtenerPosts();
-    this.obtenerTemas();  
+    this.obtenerTemas();
   }
 
-  // Obtener las publicaciones
+
+
+  comentarPost(publicacion: Publicacion): void {
+    if (!this.contenidoComent.trim()) {
+      alert('El comentario no puede estar vacío.');
+      return;
+    }
+
+    const comentario: ComentarioPost = {
+      comentContenido: this.contenidoComent,
+      usuario: { usuarioId: this.idUsuario },
+      publicacione: { postId: publicacion.postId },
+    };
+
+
+    this.postService.agregarComentario(comentario).subscribe(
+      (response) => {
+        this.obtenerPosts();
+        this.contenidoComent = '';
+      },
+      (error) => {
+        this.obtenerPosts();
+        this.contenidoComent = '';
+      }
+    );
+  }
+
+
+  crearPublicacion(): void {
+    if (!this.nuevaPublicacion || !this.temaSeleccionado) {
+      alert('Por favor, completa el contenido y selecciona un tema.');
+      return;
+    }
+
+    const nuevaPost: Post = {
+      postContenido: this.nuevaPublicacion,
+      temaId: { temaId: this.temaSeleccionado },
+      usuarioId: { usuarioId: this.idUsuario },
+    };
+
+    this.postService.registrarPost(nuevaPost).subscribe({
+      next: () => {
+        alert('Publicación creada con éxito.');
+        this.nuevaPublicacion = '';
+        this.temaSeleccionado = '';
+        this.obtenerPosts();
+      },
+      error: (error) => {
+        if (error.status === 201) {
+          console.info("Publicacion creada satisfactoriamente");
+          this.nuevaPublicacion = '';
+          this.temaSeleccionado = '';
+        }
+        this.obtenerPosts();
+      },
+    });
+  }
+
+
+
+
   obtenerPosts(): void {
     this.postService.obtenerPost().subscribe({
       next: (data: Publicacion[]) => {
@@ -34,40 +101,25 @@ export class FeedComponent implements OnInit {
       },
       error: (error: any) => console.log(error),
       complete: () => {
-        console.log("Se completó exitosamente");
       }
     });
   }
 
-  // Obtener los temas
+
   obtenerTemas(): void {
     this.postService.obtenerTemas().subscribe({
-      next: (data: Tema[]) => {  
+      next: (data: Tema[]) => {
         this.temas = data;
-        console.log(this.temas);
       },
       error: (error: any) => console.log(error)
     });
   }
 
-  // Filtrar publicaciones por tema
+
   filtrarPublicaciones(): void {
     this.publicacionesFiltradas = this.filtroTema
       ? this.publicacion.filter((p: Publicacion) => p.temaNombre === this.filtroTema)
       : [...this.publicacion];
-  }
-
-  // Crear una nueva publicación
-  crearPublicacion() {
-    if (this.nuevaPublicacion.trim() === '' || this.temaSeleccionado === '') {
-      alert('Por favor, escribe algo y selecciona un tema antes de publicar.');
-      return;
-    }
-
-
-    this.filtrarPublicaciones();
-    this.nuevaPublicacion = '';
-    this.temaSeleccionado = '';
   }
 
 
