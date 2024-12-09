@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { UsuarioInfoService } from '../../services/usuario-info.service';
@@ -11,36 +11,45 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cheadermain.component.css']
 })
 export class CheadermainComponent implements OnInit {
+  showUsuarios = false; // Controla si se muestra el menú de usuarios
 
   usuario: any;
-  usuarios: any[] = []; // Lista de usuarios
-  filteredUsuarios: any[] = []; // Lista filtrada de usuarios
-  searchText: string = ''; // Texto de búsqueda
+  usuarios: any[] = [];
+  filteredUsuarios: any[] = [];
+  searchText: string = '';
+
+  // Referencia para el input de búsqueda y el contenedor del menú de usuarios
+  inputElement: HTMLElement | null = null;
+  menuElement: HTMLElement | null = null;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userInfo: UsuarioInfoService,
-    private http: HttpClient
+    private userInfo: UsuarioInfoService
   ) {
     this.usuario = this.userInfo.usuarioDatos;
   }
 
   ngOnInit(): void {
-    this.getUsuarios(); // Obtén la lista de usuarios al cargar el componente
+    this.getUsuarios();
+  }
+
+  // Para manejar la apertura y cierre del menú
+  toggleUsuarios(): void {
+    this.showUsuarios = !this.showUsuarios;
   }
 
   // Función para obtener todos los usuarios de la API
   getUsuarios(): void {
-    this.http.get<any[]>('http://localhost:8080/ApiUsers/usuarios').subscribe((data) => {
+    this.userInfo.listarUsuario().subscribe((data) => {
       this.usuarios = data;
-      this.filteredUsuarios = data; 
+      this.filteredUsuarios = data;
     });
   }
 
   onSearch(): void {
     if (this.searchText.trim() === '') {
-      this.filteredUsuarios = this.usuarios;
+      this.filteredUsuarios = this.usuarios; // Muestra todos los usuarios si el campo de búsqueda está vacío
     } else {
       this.filteredUsuarios = this.usuarios.filter(usuario =>
         usuario.usuNombre.toLowerCase().includes(this.searchText.toLowerCase()) ||
@@ -58,5 +67,17 @@ export class CheadermainComponent implements OnInit {
 
   menu(): void {
     this.menuAbierto = !this.menuAbierto;
+  }
+
+  // Detectar clics fuera del menú o del input
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const usuariosMenu = document.getElementById('usuariosMenu');
+    const inputElement = document.getElementById('searchInput');
+
+    // Si el clic está fuera del menú y fuera del input, cerrar el menú
+    if (usuariosMenu && !usuariosMenu.contains(event.target as Node) && inputElement && !inputElement.contains(event.target as Node)) {
+      this.showUsuarios = false;
+    }
   }
 }
