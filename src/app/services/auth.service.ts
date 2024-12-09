@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  
   private apiUrl = 'http://localhost:8080/login';
   private apiUrlRegister = 'http://localhost:8080/ApiUsers/registrar';
   private readonly TOKEN_KEY = 'token';
