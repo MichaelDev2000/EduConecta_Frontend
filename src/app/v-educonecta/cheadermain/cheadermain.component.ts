@@ -44,19 +44,23 @@ export class CheadermainComponent implements OnInit {
     this.userInfo.listarUsuario().subscribe((data) => {
       this.usuarios = data;
       this.filteredUsuarios = data;
+      console.log("usuario",this.usuarios);
+      console.log("usuariosFilter",this.filteredUsuarios);
     });
   }
 
   onSearch(): void {
     if (this.searchText.trim() === '') {
-      this.filteredUsuarios = this.usuarios; // Muestra todos los usuarios si el campo de búsqueda está vacío
+      this.filteredUsuarios = this.usuarios; 
     } else {
+      console.log(this.searchText.toLowerCase()); 
       this.filteredUsuarios = this.usuarios.filter(usuario =>
-        usuario.usuNombre.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        usuario.usuApellidos.toLowerCase().includes(this.searchText.toLowerCase())
+        (usuario.usuNombres && usuario.usuNombres.toLowerCase().includes(this.searchText.toLowerCase())) ||
+        (usuario.usuApellidos && usuario.usuApellidos.toLowerCase().includes(this.searchText.toLowerCase()))
       );
     }
   }
+
 
   menuAbierto = false;
 

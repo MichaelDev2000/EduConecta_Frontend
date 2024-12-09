@@ -21,6 +21,7 @@
                         [(ngModel)]="searchText"
                         (focus)="toggleUsuarios()"
                         (input)="onSearch()"
+                        autocomplete="off"
                         class="w-full px-4 py-2 border border-gray-300 rounded-md"
                         placeholder="Buscar usuarios..." />
 
@@ -35,8 +36,7 @@
                             <img class="h-8 w-8 rounded-full"
                                 src="{{usuario.usuImgperfil}}"
                                 alt="User Avatar" />
-                            <p class="mx-2 align-center">{{ usuario.usuNombre }}
-                                {{ usuario.usuApellidos }}</p>
+                            <p class="mx-2 align-center">{{ usuario.usuNombres }} {{ usuario.usuApellidos }}</p>
                         </li>
                     </ul>
                 </div>
