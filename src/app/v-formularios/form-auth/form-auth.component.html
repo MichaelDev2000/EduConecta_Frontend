@@ -1,18 +1,13 @@
-
 <div class="hero">
   <div class="auth-container">
     <!-- Cuadro de bienvenida -->
     <div class="welcome-box">
       <h2>Bienvenidos a Edu Conecta</h2>
       <p>
-        Una plataforma educativa diseñada para conectar estudiantes y
-        profesores en un entorno de aprendizaje moderno. Aquí podrás
-        administrar tus clases, interactuar con tus compañeros y mejorar tus
-        habilidades.
+        Una plataforma educativa diseñada para conectar estudiantes y profesores en un entorno de aprendizaje moderno.
       </p>
       <p>
-        ¡Regístrate ahora para ser parte de nuestra comunidad o inicia sesión
-        para continuar con tu aprendizaje!
+        ¡Regístrate ahora para ser parte de nuestra comunidad o inicia sesión para continuar con tu aprendizaje!
       </p>
     </div>
 
@@ -20,12 +15,13 @@
     <div class="form-box">
       <div class="button-box">
         <button
-          class="toggle-btn" [class.active]="activeForm === 'login'"
-          (click)="showLoginForm()">Iniciar Sesion
-        </button>
-        <button class="toggle-btn" [class.active]="activeForm === 'register' "
-          (click)="showRegisterForm()">Registrate
-        </button>
+          class="toggle-btn"
+          [class.active]="activeForm === 'login'"
+          (click)="showLoginForm()">Iniciar Sesión</button>
+        <button
+          class="toggle-btn"
+          [class.active]="activeForm === 'register'"
+          (click)="showRegisterForm()">Registrarse</button>
       </div>
 
       <!-- Mostrar alerta dinámica -->
@@ -54,7 +50,14 @@
           placeholder="Ingresa tu correo"
           name="email"
           required
-          ngModel />
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          ngModel
+          #email="ngModel" />
+        <div *ngIf="email.invalid && email.touched" class="validation-error">
+          <small *ngIf="email.errors?.['required']">El correo es obligatorio.</small>
+          <small *ngIf="email.errors?.['pattern']">Ingresa un correo válido.</small>
+        </div>
+
         <label for="login-password">Contraseña</label>
         <input
           id="login-password"
@@ -63,8 +66,17 @@
           placeholder="Ingresa tu contraseña"
           name="password"
           required
-          ngModel />
-        <button type="submit" class="submit-btn">Iniciar Sesión</button>
+          minlength="6"
+          maxlength="20"
+          ngModel
+          #password="ngModel" />
+        <div *ngIf="password.invalid && password.touched" class="validation-error">
+          <small *ngIf="password.errors?.['required']">La contraseña es obligatoria.</small>
+          <small *ngIf="password.errors?.['minlength']">Mínimo 6 caracteres.</small>
+          <small *ngIf="password.errors?.['maxlength']">Máximo 20 caracteres.</small>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">Iniciar Sesión</button>
         <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
       </form>
 
