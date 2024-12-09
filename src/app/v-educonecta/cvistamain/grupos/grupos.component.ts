@@ -9,9 +9,9 @@ import { crearGrupo } from '../../../models/crearGrupo.model';
   templateUrl: './grupos.component.html',
   styleUrls: ['./grupos.component.css']
 })
-export class GruposComponent implements AfterViewInit { // Implementa AfterViewInit
+export class GruposComponent  { // Implementa AfterViewInit
 
-  @ViewChild('modalCrearGrupo') modalCrearGrupo!: ElementRef;  // Usa "!" para indicar que se inicializa más tarde
+
 
   Temas: Tema[] = [];
   nuevoGrupo: crearGrupo = {
@@ -30,20 +30,18 @@ export class GruposComponent implements AfterViewInit { // Implementa AfterViewI
     this.obtenerGrupos();
   }
 
-  ngAfterViewInit(): void {
-    console.log(this.modalCrearGrupo);
-  }
 
   crearGrupo(): void {
     this.grupoService.crearGrupo(this.nuevoGrupo).subscribe({
       next: (response) => {
         console.log('Grupo creado:', response);
         this.obtenerGrupos();
-        this.limpiarFormulario();
-        this.cerrarModal(); 
+        this.limpiarFormulario(); 
       },
       error: (error: any) => {
-        console.error('Error al crear el grupo:', error);
+        this.obtenerGrupos();
+        this.limpiarFormulario(); 
+        console.log('Error al crear el grupo:', error);
       }
     });
   }
@@ -78,7 +76,4 @@ export class GruposComponent implements AfterViewInit { // Implementa AfterViewI
     });
   }
 
-  cerrarModal(): void {
-    this.modalCrearGrupo.nativeElement.classList.add('hidden');
-  }
 }
