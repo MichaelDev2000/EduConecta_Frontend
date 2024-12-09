@@ -30,6 +30,7 @@ import { CchatsComponent } from './v-educonecta/cchats/cchats.component';
 import { CchatIAComponent } from './v-educonecta/cchat-ia/cchat-ia.component';
 import { CusuarioComponent } from './v-educonecta/cusuario/cusuario.component';
 import { environment } from '../environments/environment';
+import { CgruposComponent } from './v-educonecta/cgrupos/cgrupos.component';
 
 
 
@@ -59,6 +60,7 @@ import { environment } from '../environments/environment';
     CeditarPerfilComponent,
     CchatsComponent,
     CchatIAComponent,
+    CgruposComponent,
 
   ],
   imports: [
