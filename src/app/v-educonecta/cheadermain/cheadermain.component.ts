@@ -2,8 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { UsuarioInfoService } from '../../services/usuario-info.service';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-cheadermain',
