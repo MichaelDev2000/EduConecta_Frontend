@@ -28,6 +28,17 @@
         </button>
       </div>
 
+      <!-- Mostrar alerta dinámica -->
+      <div *ngIf="alertMessage" [ngClass]="{
+        'bg-green-100 border-green-500 text-green-700': alertType === 'success',
+        'bg-amber-100 border-amber-500 text-amber-700': alertType === 'warning',
+        'bg-red-100 border-red-500 text-red-700': alertType === 'error'
+      }" role="alert" class="px-4 py-3">
+        <p class="font-bold">{{ alertType === 'success' ? '¡Éxito!' : alertType
+          === 'warning' ? 'Advertencia' : 'Error' }}</p>
+        <p class="text-sm">{{ alertMessage }}</p>
+      </div>
+
       <!-- Formulario de Login -->
       <form
         id="login"
@@ -59,63 +70,62 @@
 
       <!-- Formulario de Registro -->
       <form
-  id="register"
-  class="input-group"
-  [class.active]="activeForm === 'register'"
-  (ngSubmit)="register()">
-  <label for="register-nombres">Nombres</label>
-  <input
-    id="register-nombres"
-    type="text"
-    class="input-field"
-    placeholder="Ingresa tu nombre completo"
-    [(ngModel)]="user.usuNombres"
-    name="usuNombres"
-    required />
+        id="register"
+        class="input-group"
+        [class.active]="activeForm === 'register'"
+        (ngSubmit)="register()">
+        <label for="register-nombres">Nombres</label>
+        <input
+          id="register-nombres"
+          type="text"
+          class="input-field"
+          placeholder="Ingresa tu nombre completo"
+          [(ngModel)]="user.usuNombres"
+          name="usuNombres"
+          required />
 
-  <label for="register-apellidos">Apellidos</label>
-  <input
-    id="register-apellidos"
-    type="text"
-    class="input-field"
-    placeholder="Ingresa tus apellidos"
-    [(ngModel)]="user.usuApellidos"
-    name="usuApellidos"
-    required />
+        <label for="register-apellidos">Apellidos</label>
+        <input
+          id="register-apellidos"
+          type="text"
+          class="input-field"
+          placeholder="Ingresa tus apellidos"
+          [(ngModel)]="user.usuApellidos"
+          name="usuApellidos"
+          required />
 
-  <label for="register-email">Correo Electrónico</label>
-  <input
-    id="register-email"
-    type="email"
-    class="input-field"
-    placeholder="Ingresa tu correo electrónico"
-    [(ngModel)]="user.usuCorreo"
-    name="usuCorreo"
-    required />
+        <label for="register-email">Correo Electrónico</label>
+        <input
+          id="register-email"
+          type="email"
+          class="input-field"
+          placeholder="Ingresa tu correo electrónico"
+          [(ngModel)]="user.usuCorreo"
+          name="usuCorreo"
+          required />
 
-  <label for="register-password">Contraseña</label>
-  <input
-    id="register-password"
-    type="password"
-    class="input-field"
-    placeholder="Ingresa tu contraseña"
-    [(ngModel)]="user.usuContrasena"
-    name="usuContrasena"
-    required />
+        <label for="register-password">Contraseña</label>
+        <input
+          id="register-password"
+          type="password"
+          class="input-field"
+          placeholder="Ingresa tu contraseña"
+          [(ngModel)]="user.usuContrasena"
+          name="usuContrasena"
+          required />
 
-  <label for="biografia">Biografía</label>
-  <input
-    id="biografia"
-    type="text"
-    class="input-field"
-    placeholder="Escribe tu biografía"
-    [(ngModel)]="user.usuBiografia"
-    name="usuBiografia"
-    required />
+        <label for="biografia">Biografía</label>
+        <input
+          id="biografia"
+          type="text"
+          class="input-field"
+          placeholder="Escribe tu biografía"
+          [(ngModel)]="user.usuBiografia"
+          name="usuBiografia"
+          required />
 
-  <button type="submit" class="submit-btn">Registrarse</button>
-</form>
-
+        <button type="submit" class="submit-btn">Registrarse</button>
+      </form>
 
       <!-- Formulario de Recuperación de Contraseña -->
       <form

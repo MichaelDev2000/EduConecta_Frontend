@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -14,8 +14,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  register(user: any): Observable<any> {
-    return this.http.post(this.apiUrlRegister, user);
+  register(user: any): Observable<HttpResponse<any>> {
+    return this.http.post(this.apiUrlRegister, user,{ observe: 'response' });
   }
 
   login(email: string, password: string): Observable<any> {

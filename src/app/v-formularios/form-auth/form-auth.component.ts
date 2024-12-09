@@ -11,6 +11,9 @@ import { NgForm } from '@angular/forms';
 export class FormAuthComponent {
   activeForm: string = 'login';
   errorMessage = '';
+  message: string = '';
+  alertType: string = '';
+  alertMessage: string = '';
 
 
 
@@ -54,26 +57,44 @@ export class FormAuthComponent {
 
   user = {
     usuNombres: '',
-  usuApellidos: '',
-  usuCorreo: '',
-  usuContrasena: '',
-  usuBiografia: '',
-  usuStatus: 1,
+    usuApellidos: '',
+    usuCorreo: '',
+    usuContrasena: '',
+    usuBiografia: '',
+    usuStatus: 1,
   };
 
 
   register() {
-    this.authService.register(this.user).subscribe(
-      (response) => {
-        console.log('Registro exitoso:', response);
-        alert('Usuario registrado exitosamente');
-      },
-      (error) => {
+    if (!this.user.usuNombres || !this.user.usuApellidos || !this.user.usuCorreo || !this.user.usuContrasena || !this.user.usuBiografia) {
+      this.alertType = 'warning'; // Alerta de advertencia
+      this.alertMessage = 'Todos los campos son obligatorios.';
+      return;
+    }
+
+    this.authService.register(this.user).subscribe({
+      next: (response) => {
         console.log(this.user);
-        console.error('Error al registrarse:', error);
-        alert('Error al registrar usuario');
+        console.log(response.status, "response");
+        if (response.status === 201) { 
+          this.alertType = 'success';
+          this.alertMessage = 'El usuario ha sido creado satisfactoriamente.';
+        } else if (response.status === 409) { // Si la respuesta es 409 (CONFLICT)
+          this.alertType = 'error';
+          this.alertMessage = 'El usuario ya existe.';
+        }
+      },
+      error: (error) => {
+        console.error('Error en el registro:', error);
+        this.alertType = 'error';
+        if (error.status === 0) {
+          this.alertMessage = 'No se pudo conectar al servidor.';
+        } else {
+          this.alertMessage = `Error inesperado: ${error.statusText}`;
+        }
       }
-    );
+    });
   }
+
 
 }
