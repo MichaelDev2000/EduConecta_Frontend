@@ -84,7 +84,7 @@
           [class.text-blue-500]="!publicacion.haDadoLike"
           [class.text-red-500]="publicacion.haDadoLike"
           (click)="darMeGusta(publicacion)">
-          <img [src]="publicacion.haDadoLike ? 'unlike.png' : 'like.png'"
+          <img [src]="publicacion.haDadoLike ? '/images/dislike.png' : '/images/like.png'"
             alt="Like" class="icon w-4 h-4" />
           {{ publicacion.haDadoLike ? 'Quitar Me gusta' : 'Me gusta' }} ({{
           publicacion.numeroLikes }})
@@ -92,7 +92,7 @@
         <button
           class="comment-button flex items-center gap-2 text-blue-500 hover:text-blue-600"
           (click)="mostrarComentarios(publicacion)">
-          <img src="comment.png" alt="Comment" class="icon w-4 h-4" />
+          <img src="/images/comment.png" alt="Comment" class="icon w-4 h-4" />
           Comentar
         </button>
       </div>
