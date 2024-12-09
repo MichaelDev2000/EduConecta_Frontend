@@ -20,7 +20,8 @@
         <select [(ngModel)]="temaSeleccionado" id="tema"
           class="w-full border border-gray-300 p-2 rounded-md text-gray-700">
           <option value>Selecciona un tema</option>
-          <option *ngFor="let tema of temas" [value]="tema">{{ tema }}</option>
+          <option *ngFor="let tema of temas" [value]="tema.temaId">{{
+            tema.temaNombre }}</option>
         </select>
       </div>
 
@@ -49,12 +50,22 @@
     </select>
   </section>
 
+  <!-- Mensaje de carga -->
+  <div *ngIf="publicacionesFiltradas.length === 0"
+    class="text-center text-gray-500">
+    <p *ngIf="publicacionesFiltradas.length === 0">Cargando publicaciones...</p>
+    <p *ngIf="publicacionesFiltradas.length > 0">No hay publicaciones
+      disponibles para
+      este tema.</p>
+  </div>
+
+  <!-- Lista de publicaciones -->
   <div class="post-list space-y-4">
     <div *ngFor="let publicacion of publicacionesFiltradas"
       class="post-item rounded-lg border border-gray-200 bg-gray-50 p-4">
       <!-- Encabezado de la publicación -->
       <div class="post-header flex items-center gap-4 mb-3">
-        <img [src]="publicacion.usuarioImagen || 'default-avatar.png'"
+        <img [src]="publicacion.usuarioImagen"
           alt="Imagen del usuario"
           class="user-image w-12 h-12 object-cover rounded-full" />
         <div>
@@ -84,7 +95,8 @@
           [class.text-blue-500]="!publicacion.haDadoLike"
           [class.text-red-500]="publicacion.haDadoLike"
           (click)="darMeGusta(publicacion)">
-          <img [src]="publicacion.haDadoLike ? '/images/dislike.png' : '/images/like.png'"
+          <img
+            [src]="publicacion.haDadoLike ? '/images/dislike.png' : '/images/like.png'"
             alt="Like" class="icon w-4 h-4" />
           {{ publicacion.haDadoLike ? 'Quitar Me gusta' : 'Me gusta' }} ({{
           publicacion.numeroLikes }})
@@ -99,10 +111,13 @@
 
       <!-- Comentarios -->
       <div *ngIf="publicacion.mostrarComentarios" class="comments-section mt-4">
-        <textarea [(ngModel)]="publicacion.nuevoComentario"
+        <textarea
+          [(ngModel)]="contenidoComent"
           placeholder="Escribe un comentario..."
-          class="w-full p-3 text-sm border border-gray-300 rounded-md"></textarea>
+          class="w-full p-3 text-sm border border-gray-300 rounded-md">
+  </textarea>
         <button
+          (click)="comentarPost(publicacion)"
           class="bg-blue-500 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition mt-2">
           Comentar
         </button>
@@ -124,6 +139,7 @@
           <p class="comment-content text-sm text-gray-600 mt-2">{{
             comentario.contenido }}</p>
         </div>
+
       </div>
     </div>
   </div>
