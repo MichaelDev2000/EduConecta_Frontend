@@ -21,7 +21,7 @@ export class CeditarPerfilComponent {
 
   constructor(private authService: AuthService, private usuarioInfo : UsuarioInfoService, private userInfo: UsuarioInfoService) {
     this.usuario = this.usuarioInfo.usuarioDatos;
-    
+    this.usuarioid = this.userInfo.usuarioDatos.usuId;
   }
 
   onChangePassword(changePasswordForm: NgForm) {
