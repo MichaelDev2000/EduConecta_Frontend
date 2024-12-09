@@ -1,1 +1,110 @@
-<p>cgrupos works!</p>
+<app-cheadermain></app-cheadermain>
+
+<!-- Información del grupo -->
+<section class="rounded-lg border border-blue-gray-50 font-sans py-4 px-6 mx-4 mt-4 text-center bg-white shadow-md mb-6">
+  <p class="font-bold text-lg mb-4 text-center">INFORMACIÓN DEL GRUPO</p>
+
+  <div class="flex flex-wrap justify-between sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+    <div class="flex flex-1 items-center gap-4">
+      <img alt="Imagen de grupo" src="image-placeholder.png" class="object-cover object-center w-40 h-40 rounded-full border border-gray-300 border-none">
+      <div class="text-left">
+        <p class="font-bold text-gray-700">Nombre del Grupo</p>
+        <p class="text-sm text-gray-600">Descripción del grupo o cualquier información relevante.</p>
+        <p class="text-sm text-gray-600 italic">Fecha de creación: 12/12/2024</p>
+      </div>
+    </div>
+    <div class="flex justify-start">
+      <button class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">Unirse al Grupo</button>
+    </div>
+  </div>
+</section>
+
+<!-- Contenedor para Miembros y Publicaciones -->
+<section class="flex gap-4 mx-4 mb-6">
+  <!-- Miembros del grupo (30% del ancho y tamaño fijo) -->
+  <div class="members-container w-full sm:w-[30%] h-[600px] overflow-y-auto p-4 rounded-lg border border-gray-200 bg-white shadow-md">
+    <h2 class="text-lg font-bold text-center mb-4">MIEMBROS DEL GRUPO</h2>
+
+    <!-- Miembros del grupo -->
+    <div *ngFor="let miembro of miembrosDelGrupo" class="member-item flex items-center gap-4 mb-4 p-2 bg-gray-50 rounded-lg">
+      <img [src]="miembro.imagen" alt="Miembro" class="object-cover w-12 h-12 rounded-full border border-gray-300">
+      <div class="text-left">
+        <p class="font-bold text-gray-700">{{ miembro.nombre }}</p>
+        <p class="text-sm text-gray-500">{{ miembro.estado }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Publicaciones (70% del ancho) -->
+  <div class="w-full sm:w-[70%] p-4 rounded-lg border border-gray-200 bg-white shadow-md">
+    <!-- Contenedor de crear publicación -->
+    <div class="new-post-container mb-6 p-4 rounded-lg border border-gray-200 bg-white shadow-sm">
+      <h2 class="text-lg font-bold text-center mb-4">¿Qué quieres compartir?</h2>
+
+      <div class="new-post-form">
+        <textarea [(ngModel)]="nuevaPublicacion" placeholder="Escribe tu publicación..." class="textarea w-full p-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
+
+        <div class="mt-4">
+          <label for="tema" class="block text-sm font-semibold text-gray-700 mb-1">Selecciona un tema:</label>
+          <select [(ngModel)]="temaSeleccionado" id="tema" class="w-full border border-gray-300 p-2 rounded-md text-gray-700">
+            <option value="">Selecciona un tema</option>
+            <option>Temática 1</option>
+            <option>Temática 2</option>
+            <option>Temática 3</option>
+          </select>
+        </div>
+
+        <button (click)="crearPublicacion()" class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">Publicar</button>
+      </div>
+    </div>
+
+    <!-- Contenedor de publicaciones previas -->
+    <div class="post-list space-y-4 p-4 rounded-lg border border-gray-200 bg-gray-50 shadow-sm">
+      <h2 class="text-lg font-bold text-center mb-4">Publicaciones</h2>
+
+      <!-- Lista de publicaciones -->
+      <div *ngFor="let publicacion of publicaciones" class="post-item rounded-lg border border-gray-200 bg-white p-4">
+        <div class="post-header flex items-center gap-4 mb-3">
+          <img [src]="publicacion.usuarioImagen" alt="Imagen de usuario" class="w-12 h-12 object-cover rounded-full">
+          <div>
+            <p class="font-semibold">{{ publicacion.usuarioNombre }}</p>
+            <p class="text-xs text-gray-600">{{ publicacion.creadoEn | date:'short' }}</p>
+            <p class="text-xs text-gray-500">Tema: {{ publicacion.temaNombre }}</p>
+          </div>
+        </div>
+
+        <p class="post-content text-sm text-gray-700">{{ publicacion.contenido }}</p>
+
+        <!-- Acciones de la publicación -->
+        <div class="post-actions flex items-center gap-4">
+          <button class="like-button flex items-center gap-2"
+            [class.text-blue-500]="!publicacion.haDadoLike"
+            [class.text-red-500]="publicacion.haDadoLike"
+            (click)="darMeGusta(publicacion)">
+            <img [src]="publicacion.haDadoLike ? '/images/dislike.png' : '/images/like.png'"
+              alt="Like" class="icon w-4 h-4" />
+            {{ publicacion.haDadoLike ? 'Quitar Me gusta' : 'Me gusta' }} ({{ publicacion.numeroLikes }})
+          </button>
+
+          <!-- Botón de comentar -->
+          <button class="comment-button flex items-center gap-2 text-blue-500 hover:text-blue-600"
+            (click)="mostrarComentarios(publicacion)">
+            <img src="/images/comment.png" alt="Comment" class="icon w-4 h-4" />
+            Comentar
+          </button>
+        </div>
+
+        <!-- Sección de comentarios -->
+        <div *ngIf="publicacion.mostrarComentarios" class="comments-section mt-4">
+          <textarea [(ngModel)]="publicacion.nuevoComentario"
+            placeholder="Escribe un comentario..."
+            class="w-full p-3 text-sm border border-gray-300 rounded-md"></textarea>
+          <button
+            class="bg-blue-500 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition mt-2">
+            Comentar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
