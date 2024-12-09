@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Tema } from '../../../models/tema.model';
+import { PostServicesService } from '../../../services/post-services.service';
 
 @Component({
   selector: 'app-grupos',
@@ -7,15 +9,24 @@ import { Component } from '@angular/core';
 })
 export class GruposComponent {
 
+  Temas: Tema[] = [];
+  constructor(private postService: PostServicesService) { }
 
-  grupos = [
-    { id: 1, nombre: 'Grupo 1', descripcion: 'Descripción del grupo 1', imagen: 'grupo1.png' },
-    { id: 2, nombre: 'Grupo 2', descripcion: 'Descripción del grupo 2', imagen: 'grupo2.png' },
-  ];
-
-  unirseAGrupo(id: number) {
-    console.log(`Te has unido al grupo con ID: ${id}`);
+  ngOnInit(): void {
+    this.obtenerTemas();
   }
+
+  obtenerTemas(): void {
+    this.postService.obtenerTemas().subscribe({
+      next: (data: Tema[]) => {
+        this.Temas = data;
+        console.log(this.Temas);
+      },
+      error: (error: any) => console.log(error)
+    });
+  }
+
+
 }
 
 

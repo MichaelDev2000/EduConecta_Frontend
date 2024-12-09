@@ -1,8 +1,8 @@
-
-
 <!-- Contenedor para crear nueva publicación -->
-<section class="feed-container1 flex-1 rounded-lg border border-gray-200 bg-white shadow-md p-4 mx-2 w-full">
-  <h2 class="section-title text-lg font-bold text-gray-700 mb-4 text-center">PUBLICACIONES</h2>
+<section
+  class="feed-container1 flex-1 rounded-lg border border-gray-200 bg-white shadow-md p-4 mx-2 w-full">
+  <h2
+    class="section-title text-lg font-bold text-gray-700 mb-4 text-center">PUBLICACIONES</h2>
 
   <div class="new-post-container mb-6">
     <div class="new-post-form rounded-lg border border-gray-200 bg-gray-50 p-4">
@@ -10,23 +10,23 @@
         [(ngModel)]="nuevaPublicacion"
         placeholder="¿Qué quieres compartir?"
         class="textarea w-full p-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        rows="3"
-      ></textarea>
+        rows="3"></textarea>
 
       <!-- Seleccionar tema -->
       <div class="mt-4">
-        <label for="tema" class="block text-sm font-semibold text-gray-700 mb-1">Selecciona un tema:</label>
-        <select [(ngModel)]="temaSeleccionado" id="tema" 
-                class="w-full border border-gray-300 p-2 rounded-md text-gray-700">
-          <option value="">Selecciona un tema</option>
+        <label for="tema"
+          class="block text-sm font-semibold text-gray-700 mb-1">Selecciona un
+          tema:</label>
+        <select [(ngModel)]="temaSeleccionado" id="tema"
+          class="w-full border border-gray-300 p-2 rounded-md text-gray-700">
+          <option value>Selecciona un tema</option>
           <option *ngFor="let tema of temas" [value]="tema">{{ tema }}</option>
         </select>
       </div>
 
       <button
         (click)="crearPublicacion()"
-        class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition"
-      >
+        class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
         Publicar
       </button>
     </div>
@@ -34,61 +34,64 @@
 </section>
 
 <!-- Contenedor para la lista de publicaciones -->
-<section class="feed-container flex-1 rounded-lg border border-gray-200 bg-white shadow-md p-4 mx-2 w-full">
+<section
+  class="feed-container flex-1 rounded-lg border border-gray-200 bg-white shadow-md p-4 mx-2 w-full">
   <!-- Contenedor de filtro -->
   <section class="filter-container flex justify-between items-center mb-6 px-4">
     <p class="font-bold text-gray-700">Filtrar publicaciones por tema:</p>
     <select
       [(ngModel)]="filtroTema"
       (change)="filtrarPublicaciones()"
-      class="border border-gray-300 p-2 rounded-md text-gray-700"
-    >
-      <option value="">Todos</option>
-      <option *ngFor="let tema of temas" [value]="tema">{{ tema }}</option>
+      class="border border-gray-300 p-2 rounded-md text-gray-700">
+      <option value>Todos</option>
+      <option *ngFor="let tema of temas" [value]="tema.temaNombre">{{
+        tema.temaNombre }}</option>
     </select>
   </section>
 
   <div class="post-list space-y-4">
-    <div
-      *ngFor="let publicacion of publicacionesFiltradas"
-      class="post-item rounded-lg border border-gray-200 bg-gray-50 p-4"
-    >
+    <div *ngFor="let publicacion of publicacionesFiltradas"
+      class="post-item rounded-lg border border-gray-200 bg-gray-50 p-4">
       <!-- Encabezado de la publicación -->
       <div class="post-header flex items-center gap-4 mb-3">
-        <img
-          [src]="publicacion.usuarioImagen"
+        <img [src]="publicacion.usuarioImagen || 'default-avatar.png'"
           alt="Imagen del usuario"
-          class="user-image w-12 h-12 object-cover rounded-full"
-        />
+          class="user-image w-12 h-12 object-cover rounded-full" />
         <div>
-          <h3 class="user-name text-sm font-semibold text-gray-800">{{ publicacion.usuario }}</h3>
-          <p class="post-date text-xs text-gray-600">{{ publicacion.fecha | date: 'short' }}</p>
-          <p class="post-theme text-xs text-gray-500 italic">Tema: {{ publicacion.tema }}</p>
+          <h3 class="user-name text-sm font-semibold text-gray-800">{{
+            publicacion.usuarioNombre }}</h3>
+          <p class="post-date text-xs text-gray-600">{{ publicacion.creadoEn |
+            date: 'short' }}</p>
+          <p class="post-theme text-xs text-gray-500 italic">Tema: {{
+            publicacion.temaNombre }}</p>
         </div>
       </div>
 
       <!-- Contenido de la publicación -->
-      <p class="post-content text-sm text-gray-700 mb-3">{{ publicacion.contenido }}</p>
+      <p class="post-content text-sm text-gray-700 mb-3">{{
+        publicacion.contenido }}</p>
+
+      <!-- Información del grupo -->
+      <div *ngIf="publicacion.grupoNombre"
+        class="group-info text-sm text-gray-600 italic">
+        <p>Grupo: {{ publicacion.grupoNombre }}</p>
+        <p>{{ publicacion.grupoDescripcion }}</p>
+      </div>
 
       <!-- Botones de interacción -->
       <div class="post-actions flex items-center gap-4">
-        <button
-          class="like-button flex items-center gap-2"
+        <button class="like-button flex items-center gap-2"
           [class.text-blue-500]="!publicacion.haDadoLike"
           [class.text-red-500]="publicacion.haDadoLike"
-          (click)="darMeGusta(publicacion)"
-        >
-          <img
-            [src]="publicacion.haDadoLike ? 'unlike.png' : 'like.png'"
-            alt="Like"
-            class="icon w-4 h-4"
-          />
-          {{ publicacion.haDadoLike ? 'Quitar Me gusta' : 'Me gusta' }} ({{ publicacion.likes }})
+          (click)="darMeGusta(publicacion)">
+          <img [src]="publicacion.haDadoLike ? 'unlike.png' : 'like.png'"
+            alt="Like" class="icon w-4 h-4" />
+          {{ publicacion.haDadoLike ? 'Quitar Me gusta' : 'Me gusta' }} ({{
+          publicacion.numeroLikes }})
         </button>
         <button
           class="comment-button flex items-center gap-2 text-blue-500 hover:text-blue-600"
-          (click)="mostrarComentarios(publicacion)"
-        >
+          (click)="mostrarComentarios(publicacion)">
           <img src="comment.png" alt="Comment" class="icon w-4 h-4" />
           Comentar
         </button>
@@ -96,21 +99,30 @@
 
       <!-- Comentarios -->
       <div *ngIf="publicacion.mostrarComentarios" class="comments-section mt-4">
-        <textarea
-          [(ngModel)]="publicacion.nuevoComentario"
+        <textarea [(ngModel)]="publicacion.nuevoComentario"
           placeholder="Escribe un comentario..."
-          class="w-full p-3 text-sm border border-gray-300 rounded-md"
-        ></textarea>
+          class="w-full p-3 text-sm border border-gray-300 rounded-md"></textarea>
         <button
-          (click)="agregarComentario(publicacion)"
-          class="bg-blue-500 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition mt-2"
-        >
+          class="bg-blue-500 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition mt-2">
           Comentar
         </button>
-        <div *ngFor="let comentario of publicacion.comentarios" class="comment mt-2">
-          <p class="text-sm text-gray-600">
-            <strong>{{ comentario.usuario }}:</strong> {{ comentario.texto }}
-          </p>
+
+        <!-- Mostrar los comentarios -->
+        <div *ngFor="let comentario of publicacion.comentarios"
+          class="comment mt-2">
+          <div class="flex items-center gap-4">
+            <img [src]="comentario.usuarioImagen || 'default-avatar.png'"
+              alt="Imagen del usuario"
+              class="user-image w-8 h-8 object-cover rounded-full" />
+            <div>
+              <p class="comment-user-name text-sm font-semibold">{{
+                comentario.usuarioNombre }}</p>
+              <p class="comment-date text-xs text-gray-500">{{
+                comentario.creadoEn | date: 'short' }}</p>
+            </div>
+          </div>
+          <p class="comment-content text-sm text-gray-600 mt-2">{{
+            comentario.contenido }}</p>
         </div>
       </div>
     </div>
