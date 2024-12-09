@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-amistades',
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./amistades.component.css'],
 })
 export class AmistadesComponent {
-  // Lista de amigos
-  
+constructor(private router: Router){}
+// Lista de amigos
+  irAUsuario(id: string) {
+    this.router.navigate([`/educonecta/usuario/${id}`]);
+  }
 }
