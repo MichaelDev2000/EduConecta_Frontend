@@ -26,8 +26,6 @@ export class PostServicesService {
     return this.http.post<any>(this.apiUrlComentar, comentario);
   }
 
-
-
   obtenerPost(): Observable<Publicacion[]> {
     return this.http.get<Publicacion[]>(this.apiUrlPost);
   }

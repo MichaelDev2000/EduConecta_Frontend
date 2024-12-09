@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UsuarioInfoService } from '../../services/usuario-info.service';
 
 @Component({
   selector: 'app-cusuario',
@@ -8,8 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CusuarioComponent {
   usuarioId: string | null = null;
+  usuarioData: any;
+  publicaciones: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private usuarioInfoService: UsuarioInfoService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -21,7 +24,15 @@ export class CusuarioComponent {
   }
 
   obtenerUsuario(id: string) {
-    console.log(`Consultando usuario con id: ${id}`);
+    this.usuarioInfoService.inforUsuario(id).subscribe(
+      (response) => {
+        console.log('Datos del usuario:', response);
+        this.usuarioData = response;
+        this.publicaciones = response.publicaciones;
+      },
+      (error) => {
+        console.error('Error al obtener los datos del usuario', error);
+      }
+    );
   }
-
 }

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioInfoService {
   private apiUserList = "http://localhost:8080/ApiUsers/usuarios";
+  private apiUserInfo = "http://localhost:8080/ApiUsers/InfoUsuario";
 
 
   readonly userInfo = localStorage.getItem('user');
@@ -23,5 +24,10 @@ export class UsuarioInfoService {
   
   listarUsuario():Observable<any>{
     return this.http.get(this.apiUserList);
+  }
+
+  inforUsuario(usuarioId: string): Observable<any> {
+    const url = `${this.apiUserInfo}?usuarioId=${usuarioId}`;   
+    return this.http.get(url);
   }
 }

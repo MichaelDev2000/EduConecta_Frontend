@@ -43,8 +43,6 @@ export class CheadermainComponent implements OnInit {
     this.userInfo.listarUsuario().subscribe((data) => {
       this.usuarios = data;
       this.filteredUsuarios = data;
-      console.log("usuario", this.usuarios);
-      console.log("usuariosFilter", this.filteredUsuarios);
     });
   }
 
