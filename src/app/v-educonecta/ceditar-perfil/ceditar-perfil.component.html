@@ -1,17 +1,13 @@
 <section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 text-center bg-white shadow-md  mx-[25%] mt-4">
     <p class="font-bold text-lg mb-4 text-center">EDITAR PERFIL</p>
-    <div class="flex justify-end mb-4">
-        <button class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
-        guardar
-      </button>
-      </div>
+    
   
     <!-- perfil -->
     <div class=" flex justify-between  sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
       <!-- Contenedor de la información del perfil -->
     <form action="">
       <div class="flex flex-1 items-center gap-4 flex-1">
-        <img 
+        <img src="{{usuario.usuImgperfil}}"
           alt="imagen de {{usuario.usuNombre}}" 
           class="object-cover object-center w-40 h-40 rounded-full border border-gray-300">
           
@@ -20,8 +16,13 @@
             <input id="img" type="file" accept="image/jpeg">
         </div>
       </div>
-    
+      
     </form>
+    <div class="flex justify-end mb-4">
+      <button class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
+      guardar
+    </button>
+    </div>
 </div>
   </section>
   <section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md mx-[25%] mt-4">
