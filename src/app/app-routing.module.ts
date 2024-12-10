@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'main', component: VEduconectaComponent },
   { path: 'educonecta', component: VEduconectaComponent /*canActivate: [AuthGuard]*/ },
   { path: 'educonecta/chats', component: CchatsComponent },
+  { path: 'educonecta/chat/:id', component: CchatsComponent },
   { path: 'educonecta/perfil', component: CperfilComponent },
   { path: 'educonecta/grupos', component: CgruposComponent },
   { path: 'educonecta/editarPerfil', component: CeditarPerfilComponent },
