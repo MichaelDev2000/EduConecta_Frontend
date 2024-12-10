@@ -12,21 +12,19 @@ import { NgForm } from '@angular/forms';
 export class CeditarPerfilComponent {
 
   usuario:any;
-  usuarioid:string = '';
-
-      
-    
+  UsuarioId:string = '';
   errorMessage: string = '';
   successMessage: string = '';
+  
 
   constructor(private authService: AuthService, private usuarioInfo : UsuarioInfoService, private userInfo: UsuarioInfoService) {
     this.usuario = this.usuarioInfo.usuarioDatos;
-    this.usuarioid = this.userInfo.usuarioDatos.usuId;
+    this.UsuarioId = this.userInfo.usuarioDatos.usuId;
   }
 
   onChangePassword(changePasswordForm: NgForm) {
     if (changePasswordForm.valid) {
-      const userId = this.usuarioid; // Este valor puede venir de localStorage o algún otro lugar.
+      const userId = this.UsuarioId;
       const newPassword = changePasswordForm.value.newPassword;
       const oldPassword = changePasswordForm.value.oldPassword;
   
@@ -40,6 +38,27 @@ export class CeditarPerfilComponent {
           alert('Hubo un error al cambiar la contraseña. Inténtalo de nuevo.');
         }
       );
+    }
+  }
+  onSaveChanges(changeInfoForm: NgForm): void {
+    if (changeInfoForm.valid) {
+      const  usuNombres = changeInfoForm.value.usuNombres;
+      const  usuApellidos = changeInfoForm.value.usuApellidos;
+      const  usuBiografia = changeInfoForm.value.usuBiografia;
+
+      this.authService.updateUserInfo(this.UsuarioId, usuNombres, usuApellidos, usuBiografia).subscribe(
+          (response:any) => {
+            console.log('Información actualizada:', response);
+            alert('Información actualizada con éxito.');
+          },
+          (error:any) => {
+            console.log(this.UsuarioId, usuNombres, usuApellidos, usuBiografia);
+            console.error('Error al actualizar información:', error);
+            alert('Hubo un error al actualizar la información.');
+          }
+        );
+    } else {
+      alert('Por favor, completa todos los campos correctamente.');
     }
   }
 }

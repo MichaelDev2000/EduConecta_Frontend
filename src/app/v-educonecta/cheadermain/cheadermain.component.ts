@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { UsuarioInfoService } from '../../services/usuario-info.service';
 
-
 @Component({
   selector: 'app-cheadermain',
   templateUrl: './cheadermain.component.html',
@@ -11,13 +10,13 @@ import { UsuarioInfoService } from '../../services/usuario-info.service';
 })
 export class CheadermainComponent implements OnInit {
   showUsuarios = false; // Controla si se muestra el menú de usuarios
-
   usuario: any;
   usuarios: any[] = [];
   filteredUsuarios: any[] = [];
   searchText: string = '';
+  peticionesAbiertas = false;
+  peticionesPendientes: any[] = [];
 
-  // Referencia para el input de búsqueda y el contenedor del menú de usuarios
   inputElement: HTMLElement | null = null;
   menuElement: HTMLElement | null = null;
 
@@ -27,6 +26,26 @@ export class CheadermainComponent implements OnInit {
     private userInfo: UsuarioInfoService
   ) {
     this.usuario = this.userInfo.usuarioDatos;
+  }
+
+  togglePeticiones() {
+    this.peticionesAbiertas = !this.peticionesAbiertas;
+    if (this.peticionesAbiertas) {
+      this.obtenerPeticionesPendientes();
+    }
+  }
+
+  obtenerPeticionesPendientes() {
+    this.userInfo.obtenerPeticionesAmistad(this.usuario.usuId).subscribe((data) => {
+      this.peticionesPendientes = data; 
+    });
+  }
+
+
+
+  verPeticion(peticion: any) {
+    console.log(peticion);
+    // Aquí puedes agregar la lógica para aceptar o rechazar la petición
   }
 
   ngOnInit(): void {
@@ -58,7 +77,6 @@ export class CheadermainComponent implements OnInit {
     }
   }
 
-
   menuAbierto = false;
 
   logout(): void {
@@ -70,7 +88,6 @@ export class CheadermainComponent implements OnInit {
     this.menuAbierto = !this.menuAbierto;
   }
 
-  // Detectar clics fuera del menú o del input
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const usuariosMenu = document.getElementById('usuariosMenu');
