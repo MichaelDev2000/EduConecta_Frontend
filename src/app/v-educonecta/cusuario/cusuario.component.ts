@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UsuarioInfoService } from '../../services/usuario-info.service';
 
 @Component({
   selector: 'app-cusuario',
@@ -6,14 +8,31 @@ import { Component } from '@angular/core';
   styleUrl: './cusuario.component.css'
 })
 export class CusuarioComponent {
+  usuarioId: string | null = null;
+  usuarioData: any;
+  publicaciones: any;
 
-  perfil = [
-    {
-      nombre: 'Rosa Melano',
-      foto: 'https://randomuser.me/api/portraits/men/1.jpg',
-      rol: 'Mentor',
-      biografia:`Ubicación:Bogotá,Colombia \n\ncorreo:rosamelano604@gmail.com \nhola buenas tardes`,
-    }
-    
-  ];
+  constructor(private route: ActivatedRoute, private usuarioInfoService: UsuarioInfoService) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.usuarioId = params.get('id');
+      if (this.usuarioId) {
+        this.obtenerUsuario(this.usuarioId);
+      }
+    });
+  }
+
+  obtenerUsuario(id: string) {
+    this.usuarioInfoService.inforUsuario(id).subscribe(
+      (response) => {
+        console.log('Datos del usuario:', response);
+        this.usuarioData = response;
+        this.publicaciones = response.publicaciones;
+      },
+      (error) => {
+        console.error('Error al obtener los datos del usuario', error);
+      }
+    );
+  }
 }

@@ -1,54 +1,70 @@
+<app-cheadermain></app-cheadermain>
+<section
+  class="rounded-lg border border-blue-gray-50 font-sans py-4 px-6 mx-4 mt-4 text-center bg-white shadow-md">
+  <p class="font-bold text-lg mb-4 text-center">Usuario</p>
 
-<section class="rounded-lg border border-blue-gray-50 font-sans py-4 px-6 mx-4 mt-4 text-center bg-white shadow-md">
-    <p class="font-bold text-lg mb-4 text-center">PERFIL DE ROSA MELANO</p>
-  
-    <!-- Lista de amigos -->
-    <div *ngFor="let perfil of perfil"
-      class=" flex justify-between  sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
-      <!-- Contenedor de la información del amigo -->
-      <div class="flex flex-1 items-center gap-4 flex-1">
-        <img alt="imagen de {{perfil.nombre}}"
-          class="object-cover object-center w-40 h-40 rounded-full border border-gray-300">
-        <div class="text-left">
-          <p class="font-bold text-gray-700">{{perfil.nombre}}</p>
-          <p>
-            {{perfil.rol}}
-          </p>
-        </div>
-      </div>
-      <div class="flex justify-start">
-        <button
-          class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
-          Enviar solicitud de amistad
-        </button>
+  <!-- Información del usuario -->
+  <div
+    class="flex justify-between sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+    <!-- Contenedor de la información del usuario -->
+    <div class="flex flex-1 items-center gap-4 flex-1">
+      <img src="{{usuarioData.usuImgperfil}}" alt="imagen de perfil"
+        class="object-cover object-center w-40 h-40 rounded-full ">
+      <div class="text-left">
+        <p class="font-bold text-gray-700">{{ usuarioData?.usuNombre }} {{
+          usuarioData?.usuApellidos }}</p>
+        <p class="font-bold text-gray-700">{{ usuarioData?.usuBiografia }}</p>
       </div>
     </div>
-  </section>
-  <section class="flex justify-start">
+    <div class="flex justify-start">
+      <button routerLink="/educonecta/editarPerfil"
+        class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
+        Agregar amigo
+      </button>
+    </div>
+  </div>
+</section>
+
+<!---------------------------------------------------------------->
+<section class="flex justify-start">
+  <div class="grid w-full sm:w-[40%] mr-4">
+    <div
+      class="w-full max-h-[185px] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 ml-4 my-4 text-center bg-white shadow-md overflow-y-auto">
+      <p class="font-bold text-lg mb-4 text-center">SUS GRUPOS</p>
       <div
-        class="w-[40%] max-h-[185px] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 ml-4 my-4 text-center bg-white shadow-md overflow-y-auto">
-        <p>grupos ingresados de Rosa Melano</p>
-        <div class="grid grid-col sm:flex-row sm:items-center gap-4 my-4 p-4 bg-gray-50 rounded-lg shadow-sm">
-          <!--aqui un for para los grupos de ingreso-->
-          <div class="flex m-4">
-            <img alt="imagen de " class="object-cover object-center w-10 h-10 rounded-full border border-gray-300">
-            <div class="text-sm ml-4 text-start">
-              <p class="font-bold">otro grupo random</p>
-              <p>a yiyo le gusta las mujeres con rifle</p>
-            </div>
+        class="grid grid-cols-1 sm:grid-cols-1 gap-4 my-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+        <!-- Aquí un for para los grupos creados -->
+        <div class="flex" *ngFor="let grupo of usuarioData?.grupos">
+          <img [src]="grupo.imagen" alt="imagen de grupo"
+            class="object-cover object-center w-10 h-10 rounded-full border border-gray-300">
+          <div class="text-sm ml-4 text-start w-full">
+            <p class="font-bold">{{ grupo.nombre }}</p>
+            <!-- Texto que desaparece en pantallas pequeñas -->
+            <p class="hidden lg:block text-sm text-justify w-full">{{
+              grupo.descripcion }}</p>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div
+    class="w-[100%] max-h-[185px] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 ml-4 my-4 text-center bg-white shadow-md overflow-y-auto">
+    <p class="font-bold text-lg mb-4 text-center">SUS PUBLICACIONES</p>
     <div
-      class="w-[60%] max-h-[400px] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 m-4 text-center bg-white shadow-md overflow-y-auto">
-      <p>publicaciones de Rosa Melano</p>
-      <div class="grid sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
-        <!--aqui un for para las publicaciones-->
-        <div class="post-header flex items-center gap-4 mb-3">
-          <img alt="imagen de " class="object-cover object-center w-10 h-10 rounded-full border border-gray-300">
-          <p>confirmo que a maiquel le gusta la riata y a yiyo las mujeres con rifle</p>
+      class="grid sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+      <!-- Aquí un for para las publicaciones -->
+      <div class="post-header flex items-center gap-4 mb-3"
+        *ngFor="let post of publicaciones">
+        <img [src]="post.usuarioImagen" alt="imagen de usuario"
+          class="object-cover object-center w-10 h-10 rounded-full border border-gray-300">
+        <div class="text-sm ml-4 text-start w-full">
+          <p class="font-bold">{{ post.usuarioNombre }}</p>
+          <p class="hidden lg:block text-sm text-justify w-full">{{
+            post.contenido }}</p>
+          <p class="text-xs text-gray-500">{{ post.creadoEn}}</p>
         </div>
       </div>
     </div>
-  
-  </section>
+  </div>
+</section>

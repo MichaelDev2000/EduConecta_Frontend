@@ -3,6 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { provideHttpClient } from '@angular/common/http';
 
 
+
 import { FormsModule } from '@angular/forms';// este lo agrego yo yiyo para que funcione la opcion de publicar publicaicon//
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,6 +62,7 @@ import { CgruposComponent } from './v-educonecta/cgrupos/cgrupos.component';
     CchatsComponent,
     CchatIAComponent,
     CgruposComponent,
+    CusuarioComponent,
 
   ],
   imports: [
