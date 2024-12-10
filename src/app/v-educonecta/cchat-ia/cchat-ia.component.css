@@ -8,43 +8,57 @@
 }
 
 .message-content {
-    max-width: 80%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column-reverse; /* Coloca el último mensaje al fondo */
+    gap: 10px;
 }
 
 .user-message {
-    align-self: flex-start;
-    /* Alinea los mensajes del usuario a la izquierda */
-    background-color: #10B981;
-    /* Color de fondo del mensaje del usuario */
-    color: white;
-    /* Color del texto del usuario */
+    align-self: flex-start; /* Alinea los mensajes del usuario a la izquierda */
+    background-color: #ffffff; /* Fondo blanco para el mensaje del usuario */
+    color: rgb(0, 0, 0); /* Texto negro */
+    border-radius: 15px; /* Bordes redondeados */
+    border: 1px solid #b6c2e4; /* Borde de color gris claro */
+    max-width: 70%; /* Limita el ancho máximo para que no ocupe todo el ancho */
+    word-wrap: break-word; /* Rompe las palabras largas para ajustarlas al contenedor */
+    padding: 10px; /* Espaciado interior */
+
+
+    /* align-self: flex-start; /* Alinea los mensajes del usuario a la izquierda 
+    background-color: #ffffff;  /* Color de fondo del mensaje del usuario 
+    color: rgb(0, 0, 0); /* Color del texto del usuario 
     border-radius: 15px;
-    border: 1px solid #1D4ED8;
+    border: 1px solid #b6c2e4; */
 }
 
 .ai-message {
-    align-self: flex-end;
-    /* Alinea los mensajes de la IA a la derecha */
-    background-color: #E5E7EB;
-    /* Color de fondo de los mensajes de IA */
-    color: #1D4ED8;
-    /* Color del texto de IA */
+    align-self: flex-end; /* Alinea los mensajes del chatbot a la derecha */
+    background-color: #e6f1f7; /* Fondo azul claro para los mensajes del bot */
+    color: rgb(0, 0, 0); /* Texto negro */
+    border-radius: 15px; /* Bordes redondeados */
+    border: 1px solid #b6c2e4; /* Borde gris claro */
+    max-width: 70%; /* Limita el ancho máximo */
+    word-wrap: break-word; /* Rompe las palabras largas */
+    padding: 10px; /* Espaciado interior */
+
+
+   /* align-self: flex-end; /* Alinea los mensajes de la IA a la derecha 
+    background-color: #0c0c0c; /* Color de fondo de los mensajes de IA 
+    color: #f9fbff; /* Color del texto de IA 
     border-radius: 15px;
-    border: 1px solid #B0B0B0;
+    border: 1px solid #B0B0B0;*/
 }
 
 input[type="text"] {
     padding: 10px;
     font-size: 14px;
     border-radius: 8px;
-    border: 1px solid #D1D5DB;
+    border: 10px solid #D1D5DB;
 }
 
 button {
     cursor: pointer;
-    background-color: #10B981;
+    background-color: #000000;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -52,7 +66,7 @@ button {
 }
 
 button:hover {
-    background-color: #16A34A;
+    background-color: #9aebe4;
 }
 
 form {

@@ -13,17 +13,17 @@
 </button>
 
 <div *ngIf="isOpen"
-    class="fixed bottom-[calc(4rem+1.5rem)] z-20 right-0 mr-4 bg-[#1D4ED8] p-6 rounded-lg border border-[#E5E7EB] w-[440px] h-[634px]">
+    class="fixed bottom-[calc(4rem+1.5rem)] z-20 right-0 mr-4 bg-[#0c4a6e] p-6 rounded-lg border-4 border-[#030712] w-[440px] h-[634px]">
 
-    <div class="flex justify-between items-center pb-6">
+    <div class="flex justify-between items-center pb-6 border rounded bg-blancofull p-2  mb-2 ">
         <div>
             <h2
-                class="font-semibold text-lg tracking-tight text-white">Chatbot</h2>
-            <p class="text-sm text-[#F3F4F6] leading-3">Aprende con la IA</p>
+                class="font-semibold text-lg tracking-tight text-black">Chatbot</h2>
+            <p class="text-sm text-[black] leading-3">Aprende con la IA</p>
         </div>
         <button (click)="closeChat()" class="text-white hover:text-[#E11D48]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                fill="none" stroke="currentColor" stroke-width="2"
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
+                fill="none" stroke="currentColor" stroke-width="3"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 18L18 6M6 6l12 12"></path>
             </svg>
@@ -34,16 +34,16 @@
     <div class="messages-container pr-4 h-[474px] overflow-y-auto">
         <div *ngFor="let message of messages"
             [ngClass]="{'user-message': message.sender === 'user', 'ai-message': message.sender === 'ai'}">
-            <div class="message-content p-3 rounded-lg">
-                <p>{{ message.text }}</p>
+            <div class="message-content p-3 rounded-lg ">
+                <p >{{ message.text }}</p>
             </div>
         </div>
     </div>
 
     <!-- Caja de entrada -->
-    <div class="flex items-center pt-0 my-5">
+    <div class="flex items-center mb-4 sm:mb-6 md:mb-8 lg:mb-12">
         <form (ngSubmit)="sendMessage()"
-            class="flex items-center justify-center w-full space-x-2">
+            class="flex items-center justify-center w-full  space-x-2">
             <input
                 [(ngModel)]="userInput"
                 name="message"
