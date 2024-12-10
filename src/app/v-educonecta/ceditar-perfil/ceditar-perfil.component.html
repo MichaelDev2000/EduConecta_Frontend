@@ -24,24 +24,46 @@
     </form>
 </div>
   </section>
-  <section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md  mx-[25%] mt-4">
-    <h1 class=" font-bold text-xl">Editar Información Básica</h1>
-    <form action="">
-        <div class="my-4 w-[100%]">
-            <label for="" class="my-4">Nombres</label><br>
-            <input class="border border-blue w-[100%]" type="text" placeholder="{{usuario.usuNombre}}">
-          </div>
-          <div class="my-4 w-[100%]">
-            <label for="" class="my-4">Apellidos</label><br>
-            <input class="border border-blue w-[100%]" type="text" placeholder="{{usuario.usuApellidos}}">
-          </div>
-          <div class="my-4 w-[100%]">
-            <label for="" >Biografia</label><br>
-            <input class="border border-blue w-[100%] h-[300px]" type="text" placeholder="{{usuario.usuBiografia}}">
-          </div>
-          <div class="flex justify-end">
-            <button class="my-4 border border-blue w-[200px] h-[50px] rounded-lg">Guardar cambios</button>
-          </div>
+  <section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md mx-[25%] mt-4">
+    <h1 class="font-bold text-xl">Editar Información Básica</h1>
+    <form #changeInfoForm="ngForm" (ngSubmit)="onSaveChanges(changeInfoForm)">
+      <div class="my-4 w-[100%]">
+        <label for="nombre" class="my-4">Nombres</label><br />
+        <input
+          id="nombre"
+          name="usuNombres"
+          class="border border-blue w-[100%]"
+          type="text"
+          [(ngModel)]="usuario.usuNombre"
+          required
+        />
+      </div>
+      <div class="my-4 w-[100%]">
+        <label for="apellidos" class="my-4">Apellidos</label><br />
+        <input
+          id="apellidos"
+          name="usuApellidos"
+          class="border border-blue w-[100%]"
+          type="text"
+          [(ngModel)]="usuario.usuApellidos"
+          required
+        />
+      </div>
+      <div class="my-4 w-[100%]">
+        <label for="biografia">Biografía</label><br />
+        <textarea
+          id="biografia"
+          name="usuBiografia"
+          class="border border-blue w-[100%] h-[300px]"
+          [(ngModel)]="usuario.usuBiografia"
+          required
+        ></textarea>
+      </div>
+      <div class="flex justify-end">
+        <button type="submit" class="my-4 border border-blue w-[200px] h-[50px] rounded-lg">
+          Guardar cambios
+        </button>
+      </div>
     </form>
   </section>
   <section

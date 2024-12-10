@@ -11,6 +11,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:8080/login';
   private apiUrlRegister = 'http://localhost:8080/ApiUsers/registrar';
   private apiUrlChangePassword = 'http://localhost:8080/ApiUsers/updatePassUsuario';
+  private apiUrlChangeInfo = 'http://localhost:8080/ApiUsers/updateInfoUsuario';
   private readonly TOKEN_KEY = 'token';
   private readonly USER_INFO_KEY = 'user';
 
@@ -39,7 +40,18 @@ export class AuthService {
 
     return this.http.patch(url, {}, { headers });
   }
-
+  updateUserInfo(UsuarioId: string, Nombres: string, Apellidos: string, Biografia: string): Observable<any> {
+    // Construimos la URL con los parámetros
+    const url = `${this.apiUrlChangeInfo}?UsuarioId=${encodeURIComponent(UsuarioId)}&Nombres=${encodeURIComponent(Nombres)}&Apellidos=${encodeURIComponent(Apellidos)}&Biografia=${encodeURIComponent(Biografia)}`;
+  
+    // Configuramos los headers si son necesarios
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+  
+    // Realizamos la petición con HTTP PATCH
+    return this.http.patch(url, {}, { headers });
+  }
 
   getToken(): string | null {
     const tokenUser = localStorage.getItem(this.TOKEN_KEY);
