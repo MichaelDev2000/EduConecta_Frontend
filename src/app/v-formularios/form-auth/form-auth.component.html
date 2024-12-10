@@ -9,10 +9,11 @@
       <p>
         ¡Regístrate ahora para ser parte de nuestra comunidad o inicia sesión para continuar con tu aprendizaje!
       </p>
+      <img class="rounded-lg mb-4 w-[100px] h-[100px] object-cover" src="/images/icono.png" alt="">
     </div>
 
     <!-- Cuadro de formularios -->
-    <div class="form-box">
+    <div class="form-box  bg-gradient-to-b from-slate-900 to-black ">
       <div class="button-box">
         <button
           class="toggle-btn"
@@ -38,7 +39,7 @@
       <!-- Formulario de Login -->
       <form
         id="login"
-        class="input-group"
+        class="input-group  "
         [class.active]="activeForm === 'login'"
         #loginForm="ngForm"
         (ngSubmit)="onLogin(loginForm)">
@@ -70,10 +71,10 @@
           maxlength="20"
           ngModel
           #password="ngModel" />
-        <div *ngIf="password.invalid && password.touched" class="validation-error">
-          <small *ngIf="password.errors?.['required']">La contraseña es obligatoria.</small>
-          <small *ngIf="password.errors?.['minlength']">Mínimo 6 caracteres.</small>
-          <small *ngIf="password.errors?.['maxlength']">Máximo 20 caracteres.</small>
+        <div *ngIf="password.invalid && password.touched" class="validation-error ">
+          <small *ngIf="password.errors?.['required']"  class=" text-blancofull"  class="text-white">La contraseña es obligatoria.</small>
+          <small *ngIf="password.errors?.['minlength']" class="text-blancofull"  class="text-white">Mínimo 6 caracteres.</small>
+          <small *ngIf="password.errors?.['maxlength']" class="text-blancofull"  class="text-white">Máximo 20 caracteres.</small>
         </div>
 
         <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">Iniciar Sesión</button>
@@ -119,8 +120,8 @@
             #emailRef="ngModel"
           />
           <div *ngIf="emailRef?.errors && emailRef.touched">
-            <span *ngIf="emailRef.errors?.['required']">El correo es obligatorio.</span>
-            <span *ngIf="emailRef.errors?.['pattern']">El formato del correo no es válido.</span>
+            <span *ngIf="emailRef.errors?.['required']" class="text-white">El correo es obligatorio.</span>
+            <span *ngIf="emailRef.errors?.['pattern']"  class="text-white">El formato del correo no es válido.</span>
           </div>
           
           

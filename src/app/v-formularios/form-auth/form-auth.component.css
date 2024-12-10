@@ -73,9 +73,9 @@
 .welcome-box {
   flex: 1;
   padding: 30px;
-  background: linear-gradient(to right, #000000, #6e6b63);
+  background: linear-gradient(to right, #0a111e, #ffffff);
   /* Degradado igual a los botones */
-  color: #fff;
+ 
   /* Aseguramos que el texto sea blanco sobre el fondo oscuro */
   display: flex;
   flex-direction: column;
@@ -88,12 +88,16 @@
   margin-bottom: 15px;
   font-size: 22px;
   font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px rgb(0, 0, 0);
+  
 }
 
 .welcome-box p {
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 10px;
   color: #fff;
+  text-shadow: 2px 2px 0.10px rgb(0, 0, 0);
   /* Color de texto blanco */
 }
 
@@ -113,18 +117,18 @@
 .toggle-btn {
   flex: 1;
   padding: 10px;
-  border: none;
+  
   background: transparent;
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  color: #555;
+  color: #ffffff;
   transition: 0.3s;
 }
 
 .toggle-btn.active {
-  color: #fff;
-  background: linear-gradient(to right, #000000, #7a776d);
+  color: #000000; /*este color es de iniciar sesion*/
+  background: linear-gradient(to right, #ffffff, #ffffff);
   border-radius: 5px;
 }
 
@@ -132,6 +136,7 @@
   display: none;
   flex-direction: column;
   gap: 15px;
+  
 }
 
 .input-group.active {
@@ -146,21 +151,21 @@
   border-radius: 5px;
 }
 
-label {
+label { /*codigo del ilabel*/
   font-size: 14px;
   font-weight: bold;
-  color: #555;
-
+  color: #ffffff;
+  
   display: inline-block;
 }
 
 .submit-btn {
   padding: 10px;
   width: 100%;
-  background: linear-gradient(to right, #000000, #7a776d);
-  border: none;
+  background: linear-gradient(to right, #ffffff, #ffffff);
+  border: 1px solid;
   border-radius: 5px;
-  color: #fff;
+  color: #000000;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
@@ -194,3 +199,6 @@ label {
   background: #f9f9f9;
 }
 
+.validation-error{
+color:white;
+}
