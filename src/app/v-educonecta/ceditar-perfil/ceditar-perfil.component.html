@@ -26,55 +26,79 @@
 </div>
   </section>
   <section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md mx-[25%] mt-4">
-    <h1 class="font-bold text-xl">Editar Información Básica</h1>
-    <form #changeInfoForm="ngForm" (ngSubmit)="onSaveChanges(changeInfoForm)">
-      <div class="my-4 w-[100%]">
-        <label for="nombre" class="my-4">Nombres</label><br />
-        <input
-          id="nombre"
-          name="usuNombres"
-          class="border border-blue w-[100%]"
-          type="text"
-          [(ngModel)]="usuario.usuNombre"
-          required
-        />
-      </div>
-      <div class="my-4 w-[100%]">
-        <label for="apellidos" class="my-4">Apellidos</label><br />
-        <input
-          id="apellidos"
-          name="usuApellidos"
-          class="border border-blue w-[100%]"
-          type="text"
-          [(ngModel)]="usuario.usuApellidos"
-          required
-        />
-      </div>
-      <div class="my-4 w-[100%]">
-        <label for="biografia">Biografía</label><br />
-        <textarea
-          id="biografia"
-          name="usuBiografia"
-          class="border border-blue w-[100%] h-[300px]"
-          [(ngModel)]="usuario.usuBiografia"
-          required
-        ></textarea>
-      </div>
-      <div class="flex justify-end">
-        <button type="submit" class="my-4 border border-blue w-[200px] h-[50px] rounded-lg">
-          Guardar cambios
-        </button>
-      </div>
-    </form>
-  </section>
-  <section
-  class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md mx-[25%] mt-4">
-  <h1 class="font-bold text-xl">Cambiar Contraseña</h1>
-  <form
-    #changePasswordForm="ngForm"
-    (ngSubmit)="onChangePassword(changePasswordForm)">
+  <h1 class="font-bold text-xl">Editar Información Básica</h1>
+  <form #changeInfoForm="ngForm" (ngSubmit)="onSaveChanges(changeInfoForm)">
+    <!-- Nombres -->
     <div class="my-4 w-[100%]">
-      <label for="current-password" class="my-4">Contraseña actual</label><br>
+      <label for="nombre" class="my-4">Nombres</label><br />
+      <input
+        id="nombre"
+        name="usuNombres"
+        class="border border-blue w-[100%]"
+        type="text"
+        [(ngModel)]="usuario.usuNombre"
+        required
+        maxlength="100"
+        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+      />
+      <div *ngIf="changeInfoForm.submitted && !changeInfoForm.controls['usuNombres']?.valid" class="text-red-500">
+        El nombre es obligatorio y debe contener solo letras (máximo 100 caracteres).
+      </div>
+    </div>
+
+    <!-- Apellidos -->
+    <div class="my-4 w-[100%]">
+      <label for="apellidos" class="my-4">Apellidos</label><br />
+      <input
+        id="apellidos"
+        name="usuApellidos"
+        class="border border-blue w-[100%]"
+        type="text"
+        [(ngModel)]="usuario.usuApellidos"
+        required
+        maxlength="100"
+        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+      />
+      <div *ngIf="changeInfoForm.submitted && !changeInfoForm.controls['usuApellidos']?.valid" class="text-red-500">
+        Los apellidos son obligatorios y deben contener solo letras (máximo 100 caracteres).
+      </div>
+    </div>
+
+    <!-- Biografía -->
+    <div class="my-4 w-[100%]">
+      <label for="biografia">Biografía</label><br />
+      <textarea
+        id="biografia"
+        name="usuBiografia"
+        class="border border-blue w-[100%] h-[300px]"
+        [(ngModel)]="usuario.usuBiografia"
+        required
+        maxlength="255"
+      ></textarea>
+      <div *ngIf="changeInfoForm.submitted && !changeInfoForm.controls['usuBiografia']?.valid" class="text-red-500">
+        La biografía es obligatoria y no debe exceder los 255 caracteres.
+      </div>
+    </div>
+
+    <!-- Botón de Guardar Cambios -->
+    <div class="flex justify-end">
+      <button
+        type="submit"
+        class="my-4 border border-blue w-[200px] h-[50px] rounded-lg bg-blue-500 text-white"
+        [disabled]="!changeInfoForm.valid"
+      >
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+</section>
+
+<section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md mx-[25%] mt-4">
+  <h1 class="font-bold text-xl">Cambiar Contraseña</h1>
+  <form #changePasswordForm="ngForm" (ngSubmit)="onChangePassword(changePasswordForm)">
+    <!-- Contraseña Actual -->
+    <div class="my-4 w-[100%]">
+      <label for="current-password" class="my-4">Contraseña actual</label><br />
       <input
         id="current-password"
         class="border border-blue w-[100%]"
@@ -82,11 +106,16 @@
         placeholder="Ingrese su contraseña actual"
         name="oldPassword"
         ngModel
-        required />
+        required
+      />
+      <div *ngIf="changePasswordForm.submitted && !changePasswordForm.controls['oldPassword']?.valid" class="text-red-500">
+        La contraseña actual es obligatoria.
+      </div>
     </div>
 
+    <!-- Nueva Contraseña -->
     <div class="my-4 w-[100%]">
-      <label for="new-password" class="my-4">Nueva Contraseña</label><br>
+      <label for="new-password" class="my-4">Nueva Contraseña</label><br />
       <input
         id="new-password"
         class="border border-blue w-[100%]"
@@ -94,11 +123,17 @@
         placeholder="Ingrese su nueva contraseña"
         name="newPassword"
         ngModel
-        required />
+        required
+        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$"
+      />
+      <div *ngIf="changePasswordForm.submitted && !changePasswordForm.controls['newPassword']?.valid" class="text-red-500">
+        La nueva contraseña debe tener al menos 8 caracteres e incluir letras y números.
+      </div>
     </div>
 
+    <!-- Confirmar Nueva Contraseña -->
     <div class="my-4 w-[100%]">
-      <label for="confirm-password" class="my-4">Confirmar Nueva Contraseña</label><br>
+      <label for="confirm-password" class="my-4">Confirmar Nueva Contraseña</label><br />
       <input
         id="confirm-password"
         class="border border-blue w-[100%]"
@@ -106,20 +141,24 @@
         placeholder="Vuelva a ingresar la nueva contraseña"
         name="confirmPassword"
         ngModel
-        required />
+        required
+      />
+      <div *ngIf="changePasswordForm.submitted && changePasswordForm.controls['confirmPassword']?.value !== changePasswordForm.controls['newPassword']?.value" class="text-red-500">
+        Las contraseñas no coinciden.
+      </div>
     </div>
 
+    <!-- Botón de Cambiar Contraseña -->
     <div class="flex justify-end">
       <button
         type="submit"
-        class="my-4 border border-blue w-[200px] h-[50px] rounded-lg">
+        class="my-4 border border-blue w-[200px] h-[50px] rounded-lg bg-blue-500 text-white"
+        [disabled]="!changePasswordForm.valid"
+      >
         Cambiar Contraseña
       </button>
     </div>
-
-    <!-- Mensajes de éxito o error -->
-    <div *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</div>
-    <div *ngIf="successMessage" class="text-green-500">{{ successMessage }}</div>
   </form>
 </section>
+
 
