@@ -1,15 +1,28 @@
 <div class="hero">
   <div class="auth-container">
     <!-- Cuadro de bienvenida -->
-    <div class="welcome-box">
-      <h2>Bienvenidos a Edu Conecta</h2>
-      <p>
-        Una plataforma educativa diseñada para conectar estudiantes y profesores en un entorno de aprendizaje moderno.
+    <div
+      class="welcome-box text-center p-6 max-w-md mx-auto bg-white rounded-lg shadow-md">
+      <h2 class="text-xl font-bold mb-4">Bienvenidos a Edu Conecta</h2>
+      <p class="text-gray-700 mb-2">
+        Una plataforma educativa diseñada para conectar estudiantes y profesores
+        en un entorno de aprendizaje moderno.
       </p>
-      <p>
-        ¡Regístrate ahora para ser parte de nuestra comunidad o inicia sesión para continuar con tu aprendizaje!
+      <p class="text-gray-700 mb-4">
+        ¡Regístrate ahora para ser parte de nuestra comunidad o inicia sesión
+        para continuar con tu aprendizaje!
       </p>
-      <img class="rounded-lg mb-4 w-[100px] h-[100px] object-cover" src="/images/icono.png" alt="">
+      <img class="rounded-lg mb-4 w-24 h-24 object-cover mx-auto"
+        src="/images/icono.png" alt="Icono de Edu Conecta">
+      <div class="google-login-container text-center mt-4">
+        <button class="google-login-btn w-full"
+          (click)="loginWithGoogle()">
+          <img
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            alt="Google Icon" class="google-icon">
+          Iniciar sesión con Google
+        </button>
+      </div>
     </div>
 
     <!-- Cuadro de formularios -->
@@ -55,8 +68,10 @@
           ngModel
           #email="ngModel" />
         <div *ngIf="email.invalid && email.touched" class="validation-error">
-          <small *ngIf="email.errors?.['required']">El correo es obligatorio.</small>
-          <small *ngIf="email.errors?.['pattern']">Ingresa un correo válido.</small>
+          <small *ngIf="email.errors?.['required']">El correo es
+            obligatorio.</small>
+          <small *ngIf="email.errors?.['pattern']">Ingresa un correo
+            válido.</small>
         </div>
 
         <label for="login-password">Contraseña</label>
@@ -71,13 +86,18 @@
           maxlength="20"
           ngModel
           #password="ngModel" />
-        <div *ngIf="password.invalid && password.touched" class="validation-error ">
-          <small *ngIf="password.errors?.['required']"  class=" text-blancofull"  class="text-white">La contraseña es obligatoria.</small>
-          <small *ngIf="password.errors?.['minlength']" class="text-blancofull"  class="text-white">Mínimo 6 caracteres.</small>
-          <small *ngIf="password.errors?.['maxlength']" class="text-blancofull"  class="text-white">Máximo 20 caracteres.</small>
+        <div *ngIf="password.invalid && password.touched"
+          class="validation-error ">
+          <small *ngIf="password.errors?.['required']" class=" text-blancofull"
+            class="text-white">La contraseña es obligatoria.</small>
+          <small *ngIf="password.errors?.['minlength']" class="text-blancofull"
+            class="text-white">Mínimo 6 caracteres.</small>
+          <small *ngIf="password.errors?.['maxlength']" class="text-blancofull"
+            class="text-white">Máximo 20 caracteres.</small>
         </div>
 
-        <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+        <button type="submit" class="submit-btn"
+          [disabled]="loginForm.invalid">Iniciar Sesión</button>
         <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
       </form>
 
@@ -107,25 +127,23 @@
           name="usuApellidos"
           required />
 
-          <label for="register-email">Correo Electrónico</label>
-          <input
-            id="register-email"
-            type="email"
-            class="input-field"
-            placeholder="Ingresa tu correo electrónico"
-            [(ngModel)]="user.usuCorreo"
-            name="usuCorreo"
-            required
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            #emailRef="ngModel"
-          />
-          <div *ngIf="emailRef?.errors && emailRef.touched">
-            <span *ngIf="emailRef.errors?.['required']" class="text-white">El correo es obligatorio.</span>
-            <span *ngIf="emailRef.errors?.['pattern']"  class="text-white">El formato del correo no es válido.</span>
-          </div>
-          
-          
-          
+        <label for="register-email">Correo Electrónico</label>
+        <input
+          id="register-email"
+          type="email"
+          class="input-field"
+          placeholder="Ingresa tu correo electrónico"
+          [(ngModel)]="user.usuCorreo"
+          name="usuCorreo"
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          #emailRef="ngModel" />
+        <div *ngIf="emailRef?.errors && emailRef.touched">
+          <span *ngIf="emailRef.errors?.['required']" class="text-white">El
+            correo es obligatorio.</span>
+          <span *ngIf="emailRef.errors?.['pattern']" class="text-white">El
+            formato del correo no es válido.</span>
+        </div>
 
         <label for="register-password">Contraseña</label>
         <input

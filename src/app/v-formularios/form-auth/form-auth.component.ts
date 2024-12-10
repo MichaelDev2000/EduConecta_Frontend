@@ -14,8 +14,9 @@ export class FormAuthComponent {
   message: string = '';
   alertType: string = '';
   alertMessage: string = '';
+  ErrorAuthGoogle: string = "";
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   showLoginForm() {
     this.activeForm = 'login';
@@ -39,7 +40,7 @@ export class FormAuthComponent {
           console.log('Login exitoso', response);
           localStorage.setItem('token', response.token);
           localStorage.setItem('user', JSON.stringify(response.usuario));
-          this.router.navigate(['/educonecta']);
+          this.router.navigate(['/educonecta']);  
           alert('Inicio de sesión exitoso');
         },
         (error) => {
@@ -59,10 +60,9 @@ export class FormAuthComponent {
     usuStatus: 1,
   };
 
-
   register() {
     if (!this.user.usuNombres || !this.user.usuApellidos || !this.user.usuCorreo || !this.user.usuContrasena || !this.user.usuBiografia) {
-      this.alertType = 'warning'; // Alerta de advertencia
+      this.alertType = 'warning';
       this.alertMessage = 'Todos los campos son obligatorios.';
       return;
     }
@@ -71,10 +71,11 @@ export class FormAuthComponent {
       next: (response) => {
         console.log(this.user);
         console.log(response.status, "response");
-        if (response.status === 201) { 
+        if (response.status === 201) {
           this.alertType = 'success';
           this.alertMessage = 'El usuario ha sido creado satisfactoriamente.';
-        } else if (response.status === 409) { // Si la respuesta es 409 (CONFLICT)
+          this.router.navigate(['/educonecta']); 
+        } else if (response.status === 409) { 
           this.alertType = 'error';
           this.alertMessage = 'El usuario ya existe.';
         }
@@ -91,5 +92,11 @@ export class FormAuthComponent {
     });
   }
 
-
+  loginWithGoogle(): void {
+    this.authService.loginWithGoogle().then((result) => {
+      this.router.navigate(['/educonecta']);  
+    }).catch((error) => {
+      console.error("error al autenticar: ", error);
+    });
+  }
 }

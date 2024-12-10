@@ -1,81 +1,141 @@
 <app-cheadermain></app-cheadermain>
+
 <section
   class="rounded-lg border border-blue-gray-50 font-sans py-4 px-6 mx-4 mt-4 text-center bg-white shadow-md">
   <p class="font-bold text-lg mb-4 text-center">PERFIL</p>
 
   <!-- Lista de amigos -->
-  <div 
-    class=" flex justify-between  sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-100 border  border-gray-200 rounded-lg shadow-sm">
-    <!-- Contenedor de la información del amigo -->
-    <div class="flex flex-1 items-center gap-4 flex-1">
-      <img alt="imagen de {{usuario.usuNombre}} {{usuario.usuApellidos}}" src="{{usuario.usuImgperfil}}"
-        class="object-cover object-center w-40 h-40 rounded-full border border-gray-300 border-none">
+  <div
+    class="flex justify-between sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
+    <div class="flex flex-1 items-center gap-4">
+      <img [src]="usuario?.imagenPerfil"
+        alt="imagen de {{usuario?.nombre}} {{usuario?.apellidos}}"
+        class="object-cover object-center w-40 h-40 rounded-full border border-gray-300">
       <div class="text-left">
-        <p class="font-bold text-gray-700">{{usuario.usuNombre}} {{usuario.usuApellidos}}</p>
-        <p class="font-bold text-gray-700">{{usuario.usuBiografia}}</p>
-        <p>
-          
-        </p>
+        <p class="font-bold text-gray-700">{{usuario?.nombre}}
+          {{usuario?.apellidos}}</p>
+        <p class="font-bold text-gray-700">{{usuario?.biografia}}</p>
+        <p>{{usuario?.correo}}</p>
       </div>
     </div>
     <div class="flex justify-start">
-      <button routerLink="/educonecta/editarPerfil" class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
-      
+      <button routerLink="/educonecta/editarPerfil"
+        class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
         Editar
-
-    </button>
+      </button>
     </div>
   </div>
 </section>
 
-<!---------------------------------------------------------------->
 <section class="flex justify-start">
   <div class="grid w-full sm:w-[40%] mr-4">
-    <div class="w-full max-h-[185px] rounded-lg border border-gray-200 font-sans py-4 px-6 ml-4 my-4 text-center bg-white shadow-md overflow-y-auto">
-        <p class="font-bold text-lg mb-4 text-center">MIS GRUPOS</p>
-        <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 my-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
-            <!-- Aquí un for para los grupos creados -->
-            <div class="flex">
-                <img alt="imagen de grupo" class="object-cover object-center w-10 h-10 rounded-full border border-gray-300">
-                <div class="text-sm ml-4 text-start w-full">
-                    <p class="font-bold">Nombre grupo1</p>
-                    <!-- Texto que desaparece en pantallas pequeñas -->
-                    <p class="hidden lg:block text-sm text-justify w-full">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia reprehenderit nam quaerat odit incidunt pariatur enim excepturi reiciendis sit. Numquam eveniet impedit illo, accusamus earum deserunt ullam nisi nemo cupiditate.
-                    </p>
-                </div>
-            </div>
+    <!-- Grupos -->
+    <div
+      class="w-full max-h-[185px] rounded-lg border border-gray-200 font-sans py-4 px-6 ml-4 my-4 text-center bg-white shadow-md overflow-y-auto">
+      <p class="font-bold text-lg mb-4 text-center">MIS GRUPOS</p>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-1 gap-4 my-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
+        <div class="flex">
+          <img alt="imagen de grupo"
+            class="object-cover object-center w-10 h-10 rounded-full border border-gray-300">
+          <div class="text-sm ml-4 text-start w-full">
+            <p class="font-bold">Nombre grupo1</p>
+            <p class="hidden lg:block text-sm text-justify w-full">Lorem ipsum
+              dolor sit amet consectetur adipisicing elit. Quia reprehenderit
+              nam quaerat odit incidunt pariatur enim excepturi reiciendis sit.
+              Numquam eveniet impedit illo, accusamus earum deserunt ullam nisi
+              nemo cupiditate.</p>
+          </div>
         </div>
+      </div>
     </div>
 
     <div
       class="w-[100%] max-h-[185px] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 ml-4 my-4 text-center bg-white shadow-md overflow-y-auto">
-      <p class="font-bold text-lg mb-4 text-center">GRUPO INGRESADOS </p >
-      <div class="grid grid-col sm:flex-row sm:items-center gap-4 my-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
-        <!--aqui un for para los grupos de ingreso-->
+      <p class="font-bold text-lg mb-4 text-center">GRUPO INGRESADOS</p>
+      <div
+        class="grid grid-cols-1 sm:flex-row sm:items-center gap-4 my-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
         <div class="flex m-4">
-          <img alt="imagen de " class="object-cover object-center w-10 h-10 rounded-full border border-gray-200">
+          <img alt="imagen de grupo"
+            class="object-cover object-center w-10 h-10 rounded-full border border-gray-200">
           <div class="text-sm ml-4 text-start">
-            <p class="font-bold">nombre grupo </p >
-            <p class="hidden lg:block text-sm text-justify w-full">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum eaque ipsa laudantium eum amet aspernatur quam nobis consectetur? Rem sed sunt similique officia vero, magnam natus enim tenetur dolorem nihil.</p>
+            <p class="font-bold">Nombre grupo</p>
+            <p class="hidden lg:block text-sm text-justify w-full">Lorem ipsum
+              dolor, sit amet consectetur adipisicing elit. Ipsum eaque ipsa
+              laudantium eum amet aspernatur quam nobis consectetur? Rem sed
+              sunt similique officia vero, magnam natus enim tenetur dolorem
+              nihil.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Publicaciones -->
   <div
-    class="w-[100%] max-h-[185px] rounded-lg border border-gray-50 font-sans py-4 px-6 ml-4 my-4 mr-4 text-center bg-white shadow-md overflow-y-auto">
-    <p class="font-bold text-lg mb-4 text-center">MIS PUBLICACIONES 
-    <div  class="grid sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
-      <!--aqui un for para las publicaciones-->
-      <div class="post-header flex items-center gap-4 mb-3">
-        
-        <img alt="imagen de "
-          class="object-cover object-center w-10 h-10 rounded-full border border-gray-300">
-        <p class="hidden lg:block text-sm text-justify w-full">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique laborum porro iure dolore aspernatur quos non quae dignissimos enim magni praesentium obcaecati rem eaque odit, nemo impedit commodi architecto deserunt?</p>
+    class="w-[100%] rounded-lg border border-gray-50 font-sans py-4 px-6 ml-4 my-4 mr-4 text-center bg-white shadow-md overflow-y-auto"
+    style="min-height: calc(100vh - 400px); max-height: 500px;">
+    <p class="font-bold text-lg mb-4 text-center">MIS PUBLICACIONES</p>
+    <div
+      class="grid sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
+      <div *ngFor="let post of publicaciones"
+        class="w-full mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="post-header flex items-center gap-4 mb-3">
+          <img [src]="post.usuarioImagen" alt="imagen de {{post.usuarioNombre}}"
+            class="object-cover object-center w-12 h-12 rounded-full border border-gray-300">
+          <div class="text-sm ml-4 text-start">
+            <p class="font-bold">{{post.usuarioNombre}}</p>
+            <p class="text-xs text-gray-600">{{ post.creadoEn | date: 'short'
+              }}</p>
+            <p class="text-xs text-gray-500 italic">Tema: {{ post.temaNombre
+              }}</p>
+          </div>
+        </div>
+        <p class="text-sm text-gray-700 mb-3">{{ post.contenido }}</p>
+
+        <div class="flex justify-between items-center">
+          <button class="like-button flex items-center gap-2"
+            [class.text-blue-500]="!post.haDadoLike"
+            [class.text-red-500]="post.haDadoLike">
+            <img
+              [src]="post.haDadoLike ? '/images/dislike.png' : '/images/like.png'"
+              alt="Like" class="icon w-4 h-4" />
+            {{ post.haDadoLike ? 'Quitar Me gusta' : 'Me gusta' }} ({{
+            post.numeroLikes }})
+          </button>
+          <button
+            class="comment-button flex items-center gap-2 text-blue-500 hover:text-blue-600"
+            (click)="post.mostrarComentarios = !post.mostrarComentarios">
+            <img src="/images/comment.png" alt="Comment" class="icon w-4 h-4" />
+            Comentar
+          </button>
+        </div>
+
+        <!-- Sección de comentarios -->
+        <div *ngIf="post.mostrarComentarios" class="comments-section mt-4">
+          <input type="text" placeholder="Escribe un comentario..."
+            class="w-full p-3 text-sm border border-gray-300 rounded-md mb-4">
+          <button
+            class="bg-blue-500 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition mt-2">Comentar</button>
+
+          <div *ngFor="let comentario of post.comentarios"
+            class="comment mt-2 p-2 border-b border-gray-200">
+            <div class="flex items-center gap-4">
+              <img [src]="comentario.usuarioImagen || 'default-avatar.png'"
+                alt="Imagen del usuario"
+                class="user-image w-8 h-8 object-cover rounded-full" />
+              <div>
+                <p class="comment-user-name text-sm font-semibold">{{
+                  comentario.usuarioNombre }}</p>
+                <p class="comment-date text-xs text-gray-500">{{
+                  comentario.creadoEn | date: 'short' }}</p>
+              </div>
+            </div>
+            <p class="comment-content text-sm text-gray-600 mt-2">{{
+              comentario.contenido }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 </section>

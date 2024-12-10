@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 
@@ -66,6 +68,8 @@ import { CgruposComponent } from './v-educonecta/cgrupos/cgrupos.component';
 
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
