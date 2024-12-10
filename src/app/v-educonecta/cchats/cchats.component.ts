@@ -1,39 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';  // Asegúrate de importar el Router
+import { UsuarioInfoService } from '../../services/usuario-info.service';
 
 @Component({
   selector: 'app-cchats',
   templateUrl: './cchats.component.html',
   styleUrls: ['./cchats.component.css']
 })
-export class CchatsComponent {
-  amigos = [
-    {
-      nombre: 'Alice',
-      foto: 'https://placehold.co/100x100/ffa8e4/ffffff.png?text=A',
-      enLinea: true,
-      bio: 'Amante de los gatos y los libros',
-      mensajes: [
-        { texto: 'Hola, ¿cómo estás?', propio: false },
-        { texto: 'Todo bien, ¿y tú?', propio: true }
-      ]
-    },
-    {
-      nombre: 'Martin',
-      foto: 'https://placehold.co/100x100/ad922e/ffffff.png?text=M',
-      enLinea: false,
-      bio: 'Pizza lover. A veces programo.',
-      mensajes: [
-        { texto: '¿Qué tal el proyecto?', propio: false },
-        { texto: 'Avanzando bien. ¿Tú cómo vas?', propio: true }
-      ]
-    }
-  ];
-
+export class CchatsComponent implements OnInit {
+  amigos: any[] = [];  // Lista de amigos
   amigoSeleccionado: any = null;
   nuevoMensaje: string = '';
 
+  constructor(
+    private usuarioInfoService: UsuarioInfoService,
+    private router: Router  // Inyectar Router
+  ) { }
+
+  ngOnInit() {
+    const usuarioId = JSON.parse(localStorage.getItem('user') || '{}').usuarioId;
+    this.usuarioInfoService.listarAmigos(usuarioId).subscribe(
+      (data) => {
+        this.amigos = data;  // Asigna los amigos obtenidos
+      },
+      (error) => {
+        console.error('Error al obtener amigos:', error);
+      }
+    );
+  }
+
+  // Cambiar esta función para navegar a la ruta del chat con el amigo seleccionado
   seleccionarAmigo(amigo: any) {
     this.amigoSeleccionado = amigo;
+    this.router.navigate([`/educonecta/chat/${amigo.usuarioId}`]);  // Navegar al chat del amigo
   }
 
   enviarMensaje() {
@@ -44,9 +43,5 @@ export class CchatsComponent {
       });
       this.nuevoMensaje = '';
     }
-  }
-
-  agregarAmigos() {
-    alert('Función para agregar amigos aún en desarrollo.');
   }
 }
