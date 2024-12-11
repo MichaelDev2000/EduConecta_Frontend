@@ -5,7 +5,7 @@
 
   <!-- Información del usuario -->
   <div
-    class="flex justify-between sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+    class="flex justify-between sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-200 rounded-lg shadow-sm">
     <!-- Contenedor de la información del usuario -->
     <div class="flex flex-1 items-center gap-4 flex-1">
       <img src="{{usuarioData.usuImgperfil}}" alt="imagen de perfil"
@@ -32,7 +32,7 @@
       class="w-full max-h-[185px] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 ml-4 my-4 text-center bg-white shadow-md overflow-y-auto">
       <p class="font-bold text-lg mb-4 text-center">SUS GRUPOS</p>
       <div
-        class="grid grid-cols-1 sm:grid-cols-1 gap-4 my-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+        class="grid grid-cols-1 sm:grid-cols-1 gap-4 my-4 p-4 bg-gray-200 rounded-lg shadow-sm">
         <!-- Aquí un for para los grupos creados -->
         <div class="flex" *ngFor="let grupo of usuarioData?.grupos">
           <img [src]="grupo.imagen" alt="imagen de grupo"
@@ -49,10 +49,10 @@
   </div>
 
   <div
-    class="w-[100%] max-h-[185px] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 ml-4 my-4 text-center bg-white shadow-md overflow-y-auto">
+    class="w-[100%] max-h-[185px] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 ml-4 my-4 mr-4 text-center  bg-white shadow-md overflow-y-auto">
     <p class="font-bold text-lg mb-4 text-center">SUS PUBLICACIONES</p>
     <div
-      class="grid sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+      class="grid sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-200 rounded-lg shadow-sm">
       <!-- Aquí un for para las publicaciones -->
       <div class="post-header flex items-center gap-4 mb-3"
         *ngFor="let post of publicaciones">
