@@ -25,6 +25,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(user: any): Observable<HttpResponse<any>> {
+    console.log(user);
     return this.http.post(this.apiUrlRegister, user, { observe: 'response' });
   }
 
@@ -56,6 +57,15 @@ export class AuthService {
       console.error('Error al iniciar sesión con Google:', error);
       throw error;
     }
+  }
+
+  private getAuthHeaders(): HttpHeaders {
+    let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    if (token) {
+      headers = headers.set('Authorization', 'Bearer ' + token);
+    }
+    return headers;
   }
   
 

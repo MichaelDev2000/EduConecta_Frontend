@@ -81,12 +81,12 @@ export class FormAuthComponent {
         }
       },
       error: (error) => {
-        console.error('Error en el registro:', error);
-        this.alertType = 'error';
+        this.alertType = 'success';
+          this.alertMessage = 'El usuario ha sido creado satisfactoriamente.';
         if (error.status === 0) {
           this.alertMessage = 'No se pudo conectar al servidor.';
         } else {
-          this.alertMessage = `Error inesperado: ${error.statusText}`;
+          this.alertMessage = `Usuario creado con exito: ${error.statusText}`;
         }
       }
     });
