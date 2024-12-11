@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService } from '../../services/chat-service.service';
 import { ChatMessage } from '../../models/chat-message.mode';
 import { ActivatedRoute } from '@angular/router';
+import { UsuarioInfoService } from '../../services/usuario-info.service';
 
 @Component({
   selector: 'app-cchats',
@@ -10,11 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CchatsComponent implements OnInit {
   messageInput: string = "";
-  userId: string = "";
+  userId: string;
   messageList: any[] = [];
 
-  constructor(private chatService: ChatService, private route: ActivatedRoute) {
-
+  constructor(private chatService: ChatService, private route: ActivatedRoute, private usuInfo: UsuarioInfoService) {
+    this.userId = this.usuInfo.usuarioDatos.usuId;
   }
 
   ngOnInit(): void {
