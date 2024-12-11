@@ -10,10 +10,10 @@ import { CgruposComponent } from './v-educonecta/cgrupos/cgrupos.component'; imp
 import { CusuarioComponent } from './v-educonecta/cusuario/cusuario.component';
 
 const routes: Routes = [
-  { path: '', component: VLandingPageComponent }, // Página principal (landing page)
+  { path: '', component: VLandingPageComponent }, 
   { path: 'login', component: VFormulariosComponent },
   { path: 'main', component: VEduconectaComponent },
-  { path: 'educonecta', component: VEduconectaComponent /*canActivate: [AuthGuard]*/ },
+  { path: 'educonecta', component: VEduconectaComponent, canActivate: [AuthGuard] },
   { path: 'educonecta/chats', component: CchatsComponent },
   { path: 'educonecta/chat/:id', component: CchatsComponent },
   { path: 'educonecta/perfil', component: CperfilComponent },
