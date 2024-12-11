@@ -12,14 +12,14 @@ import { CusuarioComponent } from './v-educonecta/cusuario/cusuario.component';
 const routes: Routes = [
   { path: '', component: VLandingPageComponent }, 
   { path: 'login', component: VFormulariosComponent },
-  { path: 'main', component: VEduconectaComponent },
+  { path: 'main', component: VEduconectaComponent, canActivate: [AuthGuard] },
   { path: 'educonecta', component: VEduconectaComponent, canActivate: [AuthGuard] },
-  { path: 'educonecta/chats', component: CchatsComponent },
-  { path: 'educonecta/chat/:id', component: CchatsComponent },
-  { path: 'educonecta/perfil', component: CperfilComponent },
-  { path: 'educonecta/grupos', component: CgruposComponent },
-  { path: 'educonecta/editarPerfil', component: CeditarPerfilComponent },
-  { path: 'educonecta/usuario/:id', component: CusuarioComponent }
+  { path: 'educonecta/chats', component: CchatsComponent, canActivate: [AuthGuard] },
+  { path: 'educonecta/chat/:id', component: CchatsComponent, canActivate: [AuthGuard] },
+  { path: 'educonecta/perfil', component: CperfilComponent, canActivate: [AuthGuard] },
+  { path: 'educonecta/grupos', component: CgruposComponent, canActivate: [AuthGuard] },
+  { path: 'educonecta/editarPerfil', component: CeditarPerfilComponent, canActivate: [AuthGuard] },
+  { path: 'educonecta/usuario/:id', component: CusuarioComponent, canActivate: [AuthGuard] }
 
 
 ]

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
@@ -34,6 +34,7 @@ import { CchatIAComponent } from './v-educonecta/cchat-ia/cchat-ia.component';
 import { CusuarioComponent } from './v-educonecta/cusuario/cusuario.component';
 import { environment } from '../environments/environment';
 import { CgruposComponent } from './v-educonecta/cgrupos/cgrupos.component';
+import { appInterceptorServiceInterceptor } from './interceptors/app-interceptor-service.interceptor';
 
 
 
@@ -78,7 +79,12 @@ import { CgruposComponent } from './v-educonecta/cgrupos/cgrupos.component';
   providers: [
     provideClientHydration(),
     provideHttpClient(),
-  ],
+    {
+      provide: HTTP_INTERCEPTORS,
+      useValue: appInterceptorServiceInterceptor,
+      multi: true
+    }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -81,7 +81,6 @@ export class FeedComponent implements OnInit {
       },
       error: (error) => {
         if (error.status === 201) {
-          console.info("Publicacion creada satisfactoriamente");
           this.nuevaPublicacion = '';
           this.temaSeleccionado = '';
         }

@@ -26,7 +26,6 @@ export class CusuarioComponent {
   obtenerUsuario(id: string) {
     this.usuarioInfoService.inforUsuario(id).subscribe(
       (response) => {
-        console.log('Datos del usuario:', response);
         this.usuarioData = response;
         this.publicaciones = response.publicaciones;
       },

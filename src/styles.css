@@ -1,6 +1,6 @@
 body::-webkit-scrollbar{
     width: 15px;
-    height: 100px;
+
 }
 
 body::-webkit-scrollbar-thumb{

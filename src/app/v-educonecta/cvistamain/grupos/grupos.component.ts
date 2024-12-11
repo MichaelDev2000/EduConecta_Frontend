@@ -34,14 +34,12 @@ export class GruposComponent  { // Implementa AfterViewInit
   crearGrupo(): void {
     this.grupoService.crearGrupo(this.nuevoGrupo).subscribe({
       next: (response) => {
-        console.log('Grupo creado:', response);
         this.obtenerGrupos();
         this.limpiarFormulario(); 
       },
       error: (error: any) => {
         this.obtenerGrupos();
         this.limpiarFormulario(); 
-        console.log('Error al crear el grupo:', error);
       }
     });
   }

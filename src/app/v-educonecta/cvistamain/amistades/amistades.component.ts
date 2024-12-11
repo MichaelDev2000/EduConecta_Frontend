@@ -21,7 +21,6 @@ export class AmistadesComponent implements OnInit {
         this.loading = false; 
       },
       error: (err) => {
-        console.error('Error al obtener amigos', err);
         this.loading = false;
       }
     });

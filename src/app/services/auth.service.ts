@@ -37,7 +37,6 @@ export class AuthService {
       const idToken = await result.user.getIdToken();
       this.firebaseTokenInMemory = idToken;
   
-      // Modificamos la URL para enviar el idToken como un parámetro de consulta
       const url = `${this.apiUrlGoogleAuth}?idToken=${encodeURIComponent(idToken)}`;
   
       const response: GoogleAuthResponse | undefined = await this.http.post<GoogleAuthResponse>(url, {}).toPromise();

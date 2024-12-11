@@ -7,17 +7,16 @@ import { UsuarioInfoService } from '../../services/usuario-info.service';
   styleUrls: ['./cperfil.component.css']
 })
 export class CperfilComponent implements OnInit {
-  usuario: any; // Información del usuario
-  publicaciones: any[] = []; // Lista de publicaciones del usuario
+  usuario: any; 
+  publicaciones: any[] = []; 
 
   constructor(private usuarioInfo: UsuarioInfoService) { }
 
   ngOnInit(): void {
-    const usuarioId = this.usuarioInfo.usuarioDatos.usuId; // Obtener el usuarioId desde los datos del servicio
+    const usuarioId = this.usuarioInfo.usuarioDatos.usuId; 
 
-    // Llamar al método 'inforUsuario' para obtener los detalles del usuario
+
     this.usuarioInfo.inforUsuario(usuarioId).subscribe(data => {
-      // Asignar la información del usuario
       this.usuario = {
         nombre: data.usuNombres,
         apellidos: data.usuApellidos,
@@ -26,7 +25,6 @@ export class CperfilComponent implements OnInit {
         imagenPerfil: data.usuImgperfil
       };
 
-      // Asignar las publicaciones del usuario
       this.publicaciones = data.publicaciones;
     });
   }

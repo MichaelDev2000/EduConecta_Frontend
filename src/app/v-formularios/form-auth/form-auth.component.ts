@@ -70,7 +70,7 @@ export class FormAuthComponent {
     this.authService.register(this.user).subscribe({
       next: (response) => {
         console.log(this.user);
-        console.log(response.status, "response");
+        console.log(response.ok);
         if (response.status === 201) {
           this.alertType = 'success';
           this.alertMessage = 'El usuario ha sido creado satisfactoriamente.';

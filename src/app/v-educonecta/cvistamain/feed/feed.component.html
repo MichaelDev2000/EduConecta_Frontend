@@ -111,11 +111,10 @@
 
       <!-- Comentarios -->
       <div *ngIf="publicacion.mostrarComentarios" class="comments-section mt-4">
-        <textarea
+        <input
           [(ngModel)]="contenidoComent"
           placeholder="Escribe un comentario..."
           class="w-full p-3 text-sm border border-gray-300 rounded-md">
-  </textarea>
         <button
           (click)="comentarPost(publicacion)"
           class="bg-blue-500 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-blue-600 transition mt-2">

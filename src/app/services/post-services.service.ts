@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Publicacion } from '../models/publicacion.model';
@@ -18,19 +18,32 @@ export class PostServicesService {
 
   constructor(private http: HttpClient) { }
 
+  private getAuthHeaders(): HttpHeaders {
+    let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    if (token) {
+      headers = headers.set('Authorization', 'Bearer ' + token);
+    }
+    return headers;
+  }
+
   registrarPost(post: Post): Observable<any> {
-    return this.http.post<any>(this.apiUrlCrearPost, post);
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(this.apiUrlCrearPost, post, { headers });
   }
 
   agregarComentario(comentario: ComentarioPost): Observable<any> {
-    return this.http.post<any>(this.apiUrlComentar, comentario);
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(this.apiUrlComentar, comentario, { headers });
   }
 
   obtenerPost(): Observable<Publicacion[]> {
-    return this.http.get<Publicacion[]>(this.apiUrlPost);
+    const headers = this.getAuthHeaders();
+    return this.http.get<Publicacion[]>(this.apiUrlPost, { headers });
   }
 
   obtenerTemas(): Observable<Tema[]> {
-    return this.http.get<Tema[]>(this.apiUrlTemas);
+    const headers = this.getAuthHeaders();
+    return this.http.get<Tema[]>(this.apiUrlTemas, { headers });
   }
 }
