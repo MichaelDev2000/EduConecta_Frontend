@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';  // Asegúrate de importar el Router
-import { UsuarioInfoService } from '../../services/usuario-info.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ChatService } from '../../services/chat-service.service';
+import { ChatMessage } from '../../models/chat-message.mode';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cchats',
@@ -8,40 +9,33 @@ import { UsuarioInfoService } from '../../services/usuario-info.service';
   styleUrls: ['./cchats.component.css']
 })
 export class CchatsComponent implements OnInit {
-  amigos: any[] = [];  // Lista de amigos
-  amigoSeleccionado: any = null;
-  nuevoMensaje: string = '';
+  messageInput: string = "";
+  userId: string = "";
+  messageList: any[] = [];
 
-  constructor(
-    private usuarioInfoService: UsuarioInfoService,
-    private router: Router  // Inyectar Router
-  ) { }
+  constructor(private chatService: ChatService, private route: ActivatedRoute) {
 
-  ngOnInit() {
-    const usuarioId = JSON.parse(localStorage.getItem('user') || '{}').usuarioId;
-    this.usuarioInfoService.listarAmigos(usuarioId).subscribe(
-      (data) => {
-        this.amigos = data;  // Asigna los amigos obtenidos
-      },
-      (error) => {
-        console.error('Error al obtener amigos:', error);
-      }
-    );
   }
 
-  // Cambiar esta función para navegar a la ruta del chat con el amigo seleccionado
-  seleccionarAmigo(amigo: any) {
-    this.amigoSeleccionado = amigo;
-    this.router.navigate([`/educonecta/chat/${amigo.usuarioId}`]);  // Navegar al chat del amigo
+  ngOnInit(): void {
+    this.userId = this.route.snapshot.params["userId"];
+    this.chatService.joinRoom("ABC");
+  
+    this.chatService.messages$.subscribe((newMessage: string) => {
+      const chatMessage: ChatMessage = JSON.parse(newMessage);  // Convertir el mensaje a ChatMessage
+      this.messageList.push(chatMessage);  // Agregar el nuevo mensaje a la lista
+    });
+  }
+  
+
+  sendMessage() {
+    const chatMessage: ChatMessage = {
+      message: this.messageInput, 
+      user: this.userId, 
+    };
+  
+    this.chatService.sendMessage("ABC", chatMessage);
+    this.messageInput = "";  
   }
 
-  enviarMensaje() {
-    if (this.nuevoMensaje.trim() && this.amigoSeleccionado) {
-      this.amigoSeleccionado.mensajes.push({
-        texto: this.nuevoMensaje,
-        propio: true
-      });
-      this.nuevoMensaje = '';
-    }
-  }
 }

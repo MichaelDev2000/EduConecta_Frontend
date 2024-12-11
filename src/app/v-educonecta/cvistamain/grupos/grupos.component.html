@@ -3,13 +3,13 @@
   <div class="space-y-4">
     <h2
     class="section-title text-black font-bold  mb-4 text-center">GRUPOS</h2>
-    <!-- Renderización dinámica de grupos -->
+
     <div *ngFor="let grupo of grupos"
       class="publicacion flex flex-col sm:flex-row items-start gap-4 p-4 border border-gray-300 rounded-lg bg-gray-100 hover:shadow-lg transition">
       <img src="image-placeholder.png" alt="Imagen del Grupo"
         class="w-16 h-16 object-cover rounded-full flex-shrink-0" />
       <div class="flex-1 min-w-0">
-        <p class="text-xs text-black">{{ grupo.temaId.temaNombre }}</p>
+        <p class="text-xs text-black">{{ grupo.temaId.temaNombre }}asd</p>
         <p class="text-lg font-semibold text-gray-700 truncate">{{
           grupo.grupoNombre }}</p>
         <p

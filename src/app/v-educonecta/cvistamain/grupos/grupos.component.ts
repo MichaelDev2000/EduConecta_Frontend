@@ -59,6 +59,7 @@ export class GruposComponent  { // Implementa AfterViewInit
   obtenerGrupos(): void {
     this.grupoService.obtenerGrupos().subscribe({
       next: (data) => {
+        console.log(data);
         this.grupos = data;
       },
       error: (error: any) => {
