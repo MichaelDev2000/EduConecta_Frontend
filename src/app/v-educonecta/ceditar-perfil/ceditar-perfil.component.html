@@ -1,164 +1,96 @@
-<section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 text-center bg-white shadow-md  mx-[25%] mt-4">
-    <p class="font-bold text-lg mb-4 text-center">EDITAR PERFIL</p>
-    
-  
-    <!-- perfil -->
-    <div class=" flex justify-between  sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg shadow-sm">
-      <!-- Contenedor de la información del perfil -->
-    <form action="">
-      <div class="flex flex-1 items-center gap-4 flex-1">
-        <img src="{{usuario.usuImgperfil}}"
-          alt="imagen de {{usuario.usuNombre}}" 
-          class="object-cover object-center w-40 h-40 rounded-full border border-gray-300">
-          
-        <div class="text-left">
-            <label class="font-bold text-gray-700" for="img">Imagen perfil</label>
-            <input id="img" type="file" accept="image/jpeg">
+<section class="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6 mt-6">
+  <p class="text-2xl font-semibold text-negro text-center mb-4">EDITAR PERFIL</p>
+  <!-- Perfil -->
+  <div class="flex flex-col sm:flex-row items-center gap-6 bg-gray-300 p-6 rounded-lg shadow-inner">
+    <form action="" class="flex-1">
+      <div class="flex items-center gap-6">
+        <img src="{{usuario.usuImgperfil}}" alt="imagen de {{usuario.usuNombre}}"
+          class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-full border-2 border-gray-300 hover:scale-110 transition-transform duration-300">
+        <div>
+          <label for="img" class="block text-sm font-medium text-gray-700">Imagen perfil</label>
+          <input id="img" type="file" accept="image/jpeg" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-md p-2 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
         </div>
       </div>
-      
     </form>
-    <div class="flex justify-end mb-4">
-      <button class="submit-button mt-3 bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
-      guardar
-    </button>
+    <div class="flex justify-end w-full sm:w-auto">
+      <button
+        class="bg-blue-500 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 shadow-md transition-all duration-300">
+        Guardar
+      </button>
     </div>
-</div>
-  </section>
-  <section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md mx-[25%] mt-4">
-  <h1 class="font-bold text-xl">Editar Información Básica</h1>
-  <form #changeInfoForm="ngForm" (ngSubmit)="onSaveChanges(changeInfoForm)">
+  </div>
+</section>
+
+<section class="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6 mt-6">
+  <h2 class="text-xl font-semibold text-blue-600 text-center">Editar Información Básica</h2>
+  <form #changeInfoForm="ngForm" (ngSubmit)="onSaveChanges(changeInfoForm)" class="mt-4">
     <!-- Nombres -->
-    <div class="my-4 w-[100%]">
-      <label for="nombre" class="my-4">Nombres</label><br />
-      <input
-        id="nombre"
-        name="usuNombres"
-        class="border border-blue w-[100%]"
-        type="text"
+    <div class="mb-4">
+      <label for="nombre" class="block text-sm font-medium text-gray-700">Nombres</label>
+      <input id="nombre" name="usuNombres" type="text" required maxlength="100" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
         [(ngModel)]="usuario.usuNombre"
-        required
-        maxlength="100"
-        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
-      />
-      <div *ngIf="changeInfoForm.submitted && !changeInfoForm.controls['usuNombres']?.valid" class="text-red-500">
-        El nombre es obligatorio y debe contener solo letras (máximo 100 caracteres).
-      </div>
+        class="w-full border border-gray-300 rounded-md shadow-sm p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
     </div>
 
     <!-- Apellidos -->
-    <div class="my-4 w-[100%]">
-      <label for="apellidos" class="my-4">Apellidos</label><br />
-      <input
-        id="apellidos"
-        name="usuApellidos"
-        class="border border-blue w-[100%]"
-        type="text"
-        [(ngModel)]="usuario.usuApellidos"
-        required
-        maxlength="100"
-        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
-      />
-      <div *ngIf="changeInfoForm.submitted && !changeInfoForm.controls['usuApellidos']?.valid" class="text-red-500">
-        Los apellidos son obligatorios y deben contener solo letras (máximo 100 caracteres).
-      </div>
+    <div class="mb-4">
+      <label for="apellidos" class="block text-sm font-medium text-gray-700">Apellidos</label>
+      <input id="apellidos" name="usuApellidos" type="text" required maxlength="100"
+        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" [(ngModel)]="usuario.usuApellidos"
+        class="w-full border border-gray-300 rounded-md shadow-sm p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
     </div>
 
     <!-- Biografía -->
-    <div class="my-4 w-[100%]">
-      <label for="biografia">Biografía</label><br />
-      <textarea
-        id="biografia"
-        name="usuBiografia"
-        class="border border-blue w-[100%] h-[300px]"
+    <div class="mb-4">
+      <label for="biografia" class="block text-sm font-medium text-gray-700">Biografía</label>
+      <textarea id="biografia" name="usuBiografia" required maxlength="255"
         [(ngModel)]="usuario.usuBiografia"
-        required
-        maxlength="255"
-      ></textarea>
-      <div *ngIf="changeInfoForm.submitted && !changeInfoForm.controls['usuBiografia']?.valid" class="text-red-500">
-        La biografía es obligatoria y no debe exceder los 255 caracteres.
-      </div>
+        class="w-full border border-gray-300 rounded-md shadow-sm p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 h-32 resize-none"></textarea>
     </div>
 
     <!-- Botón de Guardar Cambios -->
     <div class="flex justify-end">
-      <button
-        type="submit"
-        class="my-4 border border-blue w-[200px] h-[50px] rounded-lg bg-blue-500 text-white"
-        [disabled]="!changeInfoForm.valid"
-      >
-        Guardar cambios
+      <button type="submit"
+        class="bg-blue-500 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
+        [disabled]="!changeInfoForm.valid">
+        Guardar Cambios
       </button>
     </div>
   </form>
 </section>
 
-<section class="w-[50%] rounded-lg border border-blue-gray-50 font-sans py-4 px-6 bg-white shadow-md mx-[25%] mt-4">
-  <h1 class="font-bold text-xl">Cambiar Contraseña</h1>
-  <form #changePasswordForm="ngForm" (ngSubmit)="onChangePassword(changePasswordForm)">
+<section class="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6 mt-6">
+  <h2 class="text-xl font-semibold text-blue-600 text-center">Cambiar Contraseña</h2>
+  <form #changePasswordForm="ngForm" (ngSubmit)="onChangePassword(changePasswordForm)" class="mt-4">
     <!-- Contraseña Actual -->
-    <div class="my-4 w-[100%]">
-      <label for="current-password" class="my-4">Contraseña actual</label><br />
-      <input
-        id="current-password"
-        class="border border-blue w-[100%]"
-        type="password"
-        placeholder="Ingrese su contraseña actual"
-        name="oldPassword"
-        ngModel
-        required
-      />
-      <div *ngIf="changePasswordForm.submitted && !changePasswordForm.controls['oldPassword']?.valid" class="text-red-500">
-        La contraseña actual es obligatoria.
-      </div>
+    <div class="mb-4">
+      <label for="current-password" class="block text-sm font-medium text-gray-700">Contraseña actual</label>
+      <input id="current-password" name="oldPassword" type="password" required
+        class="w-full border border-gray-300 rounded-md shadow-sm p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
     </div>
 
     <!-- Nueva Contraseña -->
-    <div class="my-4 w-[100%]">
-      <label for="new-password" class="my-4">Nueva Contraseña</label><br />
-      <input
-        id="new-password"
-        class="border border-blue w-[100%]"
-        type="password"
-        placeholder="Ingrese su nueva contraseña"
-        name="newPassword"
-        ngModel
-        required
+    <div class="mb-4">
+      <label for="new-password" class="block text-sm font-medium text-gray-700">Nueva Contraseña</label>
+      <input id="new-password" name="newPassword" type="password" required
         pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$"
-      />
-      <div *ngIf="changePasswordForm.submitted && !changePasswordForm.controls['newPassword']?.valid" class="text-red-500">
-        La nueva contraseña debe tener al menos 8 caracteres e incluir letras y números.
-      </div>
+        class="w-full border border-gray-300 rounded-md shadow-sm p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
     </div>
 
     <!-- Confirmar Nueva Contraseña -->
-    <div class="my-4 w-[100%]">
-      <label for="confirm-password" class="my-4">Confirmar Nueva Contraseña</label><br />
-      <input
-        id="confirm-password"
-        class="border border-blue w-[100%]"
-        type="password"
-        placeholder="Vuelva a ingresar la nueva contraseña"
-        name="confirmPassword"
-        ngModel
-        required
-      />
-      <div *ngIf="changePasswordForm.submitted && changePasswordForm.controls['confirmPassword']?.value !== changePasswordForm.controls['newPassword']?.value" class="text-red-500">
-        Las contraseñas no coinciden.
-      </div>
+    <div class="mb-4">
+      <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirmar Nueva Contraseña</label>
+      <input id="confirm-password" name="confirmPassword" type="password" required
+        class="w-full border border-gray-300 rounded-md shadow-sm p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
     </div>
 
     <!-- Botón de Cambiar Contraseña -->
     <div class="flex justify-end">
-      <button
-        type="submit"
-        class="my-4 border border-blue w-[200px] h-[50px] rounded-lg bg-blue-500 text-white"
-        [disabled]="!changePasswordForm.valid"
-      >
+      <button type="submit"
+        class=" transition-transform bg-blue-500 text-white font-medium py-2 px-6 rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300"
+        [disabled]="!changePasswordForm.valid">
         Cambiar Contraseña
       </button>
     </div>
   </form>
 </section>
-
-
