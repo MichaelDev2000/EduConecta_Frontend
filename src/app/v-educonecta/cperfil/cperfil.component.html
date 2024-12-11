@@ -6,7 +6,7 @@
 
   <!-- Lista de amigos -->
   <div
-    class="flex justify-between sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
+    class="flex justify-between sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-200 border border-gray-200 rounded-lg shadow-sm">
     <div class="flex flex-1 items-center gap-4">
       <img [src]="usuario?.imagenPerfil"
         alt="imagen de {{usuario?.nombre}} {{usuario?.apellidos}}"
@@ -77,7 +77,7 @@
     style="min-height: calc(100vh - 400px); max-height: 500px;">
     <p class="font-bold text-lg mb-4 text-center">MIS PUBLICACIONES</p>
     <div
-      class="grid sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
+      class="grid sm:flex-row sm:items-center gap-4 mb-4 p-4 bg-gray-200 border border-gray-200 rounded-lg shadow-sm">
       <div *ngFor="let post of publicaciones"
         class="w-full mb-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
         <div class="post-header flex items-center gap-4 mb-3">
